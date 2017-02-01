@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" >
+    <h:head>
+        <title>Simulación Tomate</title>
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <link href="css/default.css" rel="stylesheet"/>
+        <link href="css/main.css" rel="stylesheet"/>
+        <link href="css/jquery.steps.css" rel="stylesheet"/>
+        <link href="css/jquery.bxslider.css" rel="stylesheet"/>
+        <link href="jquery-ui/jquery-ui.css" rel="stylesheet"/>
+        <link href="jquery-ui/jquery-ui.theme.css" rel="stylesheet"/>
+        <link href="images/favicon.png" rel="shortcut icon" />
+    </h:head>
+    <h:body>
+        <nav class="navbar" role="navigation">
+            <div class="container" style="text-align: center;">
+                <div class="col-md-12">
+                    <h1 class="bs-docs-featurette-title">SIMULACION <strong>R</strong> - CULTIVO DE TOMATES</h1>
+                    <hr />
+                    <h3>Universidad Central - Universidad Jorge Tadeo Lozano</h3>
+                    <br />
+                </div>
+            </div>
+        </nav>
+        <div id="loading" class="oculto topcorner">
+            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+            <p>Cargando...</p>
+        </div>
+        <p:ajaxStatus onstart="$('#loading').removeClass('oculto')" onsuccess="$('#loading').addClass('oculto')" />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="progress">
+                            <div id="progressbar" class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                <span class="sr-only"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h:form id="simulForm" enctype="multipart/form-data">
+                            <p:growl id="growl" showDetail="true"/>
+                            <h3>Seleccionar parámetros espacio-temporales</h3>
+                            <section style="width:100%">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="control-label">Seleccionar ubicación:</label>
+                                        <div id="map" style="width: 450px; height: 400px;"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label" for="locWeather">Localización Clima:</label>
+                                            <div class="col-md-7">
+                                                <h:selectOneMenu id="locWeather" styleClass="form-control input-block-level required" value="#{simulacionBean.simulation.locationWeather}">
+                                                    <f:selectItem value="#{null}"/>
+                                                    <f:selectItems value="#{simulacionBean.locations}" var="loc" itemLabel="#{loc.name}"/>
+                                                    <p:ajax event="change" update="@this" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label" for="fileWeather">Datos de clima (CSV):</label>
+                                            <div class="col-md-7">
+                                                <p:fileUpload id="fileWeather" update="growl" styleClass="input-block-level required" fileUploadListener="#{simulacionBean.handleFileUpload}" mode="advanced" auto="true" skinSimple="true" cancelLabel="Cancelar" label="Escoger"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label" for="locSoil">Localización Suelo:</label>
+                                            <div class="col-md-7">
+                                                <h:selectOneMenu id="locSoil" styleClass="form-control input-block-level required" value="#{simulacionBean.simulation.locationSoil}">
+                                                    <f:selectItem value="#{null}"/>
+                                                    <f:selectItems value="#{simulacionBean.locations}" var="loc" itemLabel="#{loc.name}"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label" for="fileSoil">Datos de suelo (CSV):</label>
+                                            <div class="col-md-7">
+                                                <p:fileUpload id="fileSoil" fileUploadListener="#{simulacionBean.handleFileUpload}" mode="advanced" auto="true" skinSimple="true" cancelLabel="Cancelar" label="Escoger"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label" for="cropType">Tipo de cultivo:</label>
+                                            <div class="col-md-7">
+                                                <h:selectOneMenu id="cropType" styleClass="form-control input-block-level required" value="#{simulacionBean.simulation.cropType}">
+                                                    <f:selectItems value="#{simulacionBean.cropTypes}" var="cType" itemLabel="#{cType.label}"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <h3>Periodo y Manejo del Cultivo</h3>
+                            <section>
+                                <div class="col-md-12">
+                                    <p align="center">Periodo</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label" for="ref">Fecha Inicial:</label>
+                                    <div class="col-md-6">
+                                        <input id="fecha" type="text" class="fecha form-control input-block-level required" placeholder="Fecha Incial" name="fecha"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label" for="ref">Numero de días:</label>
+                                    <div class="col-md-6">
+                                        <input type="number" class="form-control input-block-level required" name="dias" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <p align="center">Manejo del Cultivo</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="ref">TRGH - Transmisión de radiación del plástico</label>
+                                    <div class="col-md-4">
+                                        <input id="trgh" type="text" class="form-control input-block-level required" name="trgh" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>(1 = cultivo a campo abierto)</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="ref">PLM2 - Densidad de plantación</label>
+                                    <div class="col-md-4">
+                                        <input id="plm2" type="text" class="form-control input-block-level required" name="plm2" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>[plantas/m2]</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="ref">DMLeaf - Materia seca inicial de hojas</label>
+                                    <div class="col-md-4">
+                                        <input id="dmleaf" type="text" class="form-control input-block-level required" name="dmleaf" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>[g MS/planta]</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="ref">TotLeafArea - Area foliar inicial</label>
+                                    <div class="col-md-4">
+                                        <input id="totleaf" type="text" class="form-control input-block-level required" name="totleaf" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>[m2/planta]</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="ref">DMStem - Materia seca inicial de tallos</label>
+                                    <div class="col-md-4">
+                                        <input id="dmstem" type="text" class="form-control input-block-level required" name="dmstem" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>[g MS/planta]</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="ref">DMFruit - Materia seca inicial de frutos</label>
+                                    <div class="col-md-4">
+                                        <input id="dmfruit" type="text" class="form-control input-block-level required" name="dmfruit" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>[g MS/planta]</p>
+                                    </div>
+                                </div>
+                            </section>
+                            <h3>Recomendación Fertilización y Riego</h3>
+                            <section>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Localización:</label>
+                                            <div class="col-md-9">
+                                                <input class="summaryField form-control input-block-level" readonly="true" id="locSummary" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Archivo datos Clima:</label>
+                                            <div class="col-md-9">
+                                                <input class="summaryField form-control input-block-level" readonly="true" id="file1Summary" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Archivo datos Suelo:</label>
+                                            <div class="col-md-9">
+                                                <input class="summaryField form-control input-block-level" readonly="true" id="file2Summary" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Tipo de cultivo:</label>
+                                            <div class="col-md-9">
+                                                <input class="summaryField form-control input-block-level" readonly="true" id="tipoSummary" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Transparencia Plastico:</label>
+                                            <div class="col-md-9">
+                                                <input class="summaryField form-control input-block-level" readonly="true" id="transSummary" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">PLM2 - Densidad de plantación:</label>
+                                            <div class="col-md-9">
+                                                <input class="summaryField form-control input-block-level" readonly="true" id="plm2Summary" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">DMLeaf - Materia seca inicial de hojas:</label>
+                                            <div class="col-md-9">
+                                                <input class="summaryField form-control input-block-level" readonly="true" id="dmleafSummary" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">TotLeafArea - Area foliar inicial:</label>
+                                            <div class="col-md-9">
+                                                <input class="summaryField form-control input-block-level" readonly="true" id="totleafSummary" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">DMStem - Materia seca inicial de tallos:</label>
+                                            <div class="col-md-9">
+                                                <input class="summaryField form-control input-block-level" readonly="true" id="dmstemSummary" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">DMFruit - Materia seca inicial de frutos:</label>
+                                            <div class="col-md-9">
+                                                <input class="summaryField form-control input-block-level" readonly="true" id="dmfruitSummary" />
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <p align="center">Recomendaciones</p>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Recomendación Nitrógeno (N):</label>
+                                            <div class="col-md-9">
+                                                <input class="summaryField form-control input-block-level" readonly="true" value="5.2 [kg/m2]"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Recomendación Fósforo (P):</label>
+                                            <div class="col-md-9">
+                                                <input class="summaryField form-control input-block-level" readonly="true" value="2.6 [kg/m2]"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Recomendación Potasio (K):</label>
+                                            <div class="col-md-9">
+                                                <input class="summaryField form-control input-block-level" readonly="true" value="3.4 [kg/m2]"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Recomendación aportación de agua:</label>
+                                            <div class="col-md-9">
+                                                <input class="summaryField form-control input-block-level" readonly="true" value="5 [lt/m2/día]"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <h3>Reporte de Resultados</h3>
+                            <section>
+                                <div class="form-group">
+                                    Resultados ...
+                                </div>
+                            </section>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </div>
+    </h:body>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_sVDiVvJrNd0xK4-Q6LhTzRJhDrXTPNA"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/validatorMessages.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.steps.js"></script>
+    <script src="jquery-ui/ui.datepicker-es.js"></script>
+    <script src="jquery-ui/jquery-ui.js"></script>
+    <script src="js/main.js"></script>
+</html>

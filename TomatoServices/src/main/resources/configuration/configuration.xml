@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration>
+    <location>
+        <id>1</id>
+        <name>Villa de Leyva</name>
+        <latitude>123</latitude>
+        <longitude>123</longitude>
+    </location>
+    <location>
+        <id>2</id>
+        <name>San Gil</name>
+        <latitude>123</latitude>
+        <longitude>123</longitude>
+    </location>
+    <location>
+        <id>3</id>
+        <name>La Tebaida</name>
+        <latitude>123</latitude>
+        <longitude>123</longitude>
+    </location>
+</configuration>
