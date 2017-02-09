@@ -47,7 +47,7 @@ form.steps({
         $(this).find('.summaryField').each(function () {
             $(this).val('');
         });
-        
+
         if (priorIndex < currentIndex) {
             $('#progressbar').css('width', (priorIndex * 20 + 40) + '%');
         } else {
@@ -93,11 +93,10 @@ form.steps({
 });
 
 $('.fecha').datepicker(
-        $.datepicker.regional['es']
-        );
+    $.datepicker.regional['es']
+);
 
 $('.fecha').datepicker('option', {
-    maxDate: '0',
     dateFormat: 'yy-mm-dd'
 });
 

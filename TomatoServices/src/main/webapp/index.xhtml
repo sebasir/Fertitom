@@ -71,6 +71,7 @@
                                                 <h:selectOneMenu id="locSoil" styleClass="form-control input-block-level required" value="#{simulacionBean.simulation.locationSoil}">
                                                     <f:selectItem value="#{null}"/>
                                                     <f:selectItems value="#{simulacionBean.locations}" var="loc" itemLabel="#{loc.name}"/>
+                                                    <p:ajax event="change" update="@this" />
                                                 </h:selectOneMenu>
                                             </div>
                                         </div>
@@ -85,6 +86,7 @@
                                             <div class="col-md-7">
                                                 <h:selectOneMenu id="cropType" styleClass="form-control input-block-level required" value="#{simulacionBean.simulation.cropType}">
                                                     <f:selectItems value="#{simulacionBean.cropTypes}" var="cType" itemLabel="#{cType.label}"/>
+                                                    <p:ajax event="change" update="@this" />
                                                 </h:selectOneMenu>
                                             </div>
                                         </div>
@@ -94,77 +96,106 @@
                             <h3>Periodo y Manejo del Cultivo</h3>
                             <section>
                                 <div class="col-md-12">
-                                    <p align="center">Periodo</p>
+                                    <h3 align="center">Periodo</h3>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label" for="ref">Fecha Inicial:</label>
-                                    <div class="col-md-6">
-                                        <input id="fecha" type="text" class="fecha form-control input-block-level required" placeholder="Fecha Incial" name="fecha"/>
+                                    <label class="col-md-3 col-md-offset-3 control-label" for="fechaIni">Fecha Inicial:</label>
+                                    <div class="col-md-3">
+                                        <p:inputText id="fechaIni" placeholder="Fecha Inicial" styleClass="fecha form-control input-block-level required" value="#{simulacionBean.simulation.initDate}">
+                                            <p:ajax process="@this"/>
+                                        </p:inputText>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label" for="ref">Numero de días:</label>
-                                    <div class="col-md-6">
-                                        <input type="number" class="form-control input-block-level required" name="dias" />
+                                    <label class="col-md-3 col-md-offset-3 control-label" for="fichaFin">Fecha Final:</label>
+                                    <div class="col-md-3">
+                                        <p:inputText id="fechaFin" placeholder="Fecha Final" styleClass="fecha form-control input-block-level required" value="#{simulacionBean.simulation.finalDate}">
+                                            <p:ajax process="@this" listener="#{simulacionBean.calcDays()}" update="growl"/>
+                                        </p:inputText>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <p align="center">Manejo del Cultivo</p>
+                                    <h3 align="center">Manejo del Cultivo</h3>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="ref">TRGH - Transmisión de radiación del plástico</label>
-                                    <div class="col-md-4">
-                                        <input id="trgh" type="text" class="form-control input-block-level required" name="trgh" />
-                                    </div>
-                                    <div class="col-md-4">
-                                        <p>(1 = cultivo a campo abierto)</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="ref">PLM2 - Densidad de plantación</label>
-                                    <div class="col-md-4">
-                                        <input id="plm2" type="text" class="form-control input-block-level required" name="plm2" />
-                                    </div>
-                                    <div class="col-md-4">
-                                        <p>[plantas/m2]</p>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="trgh">TRGH - Transmisión de radiación del plástico</label>
+                                        <div class="col-md-4">
+                                            <p:inputText id="trgh" class="form-control input-block-level required" value="#{simulacionBean.simulation.trgh}">
+                                                <p:ajax process="@this"/>
+                                            </p:inputText>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p>(1 = cultivo a campo abierto)</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="ref">DMLeaf - Materia seca inicial de hojas</label>
-                                    <div class="col-md-4">
-                                        <input id="dmleaf" type="text" class="form-control input-block-level required" name="dmleaf" />
-                                    </div>
-                                    <div class="col-md-4">
-                                        <p>[g MS/planta]</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="ref">TotLeafArea - Area foliar inicial</label>
-                                    <div class="col-md-4">
-                                        <input id="totleaf" type="text" class="form-control input-block-level required" name="totleaf" />
-                                    </div>
-                                    <div class="col-md-4">
-                                        <p>[m2/planta]</p>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="plm2">PLM2 - Densidad de plantación</label>
+                                        <div class="col-md-4">
+                                            <p:inputText id="plm2" class="form-control input-block-level required" value="#{simulacionBean.simulation.plm2}">
+                                                <p:ajax process="@this"/>
+                                            </p:inputText>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p>[plantas/m2]</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="ref">DMStem - Materia seca inicial de tallos</label>
-                                    <div class="col-md-4">
-                                        <input id="dmstem" type="text" class="form-control input-block-level required" name="dmstem" />
-                                    </div>
-                                    <div class="col-md-4">
-                                        <p>[g MS/planta]</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="ref">DMFruit - Materia seca inicial de frutos</label>
-                                    <div class="col-md-4">
-                                        <input id="dmfruit" type="text" class="form-control input-block-level required" name="dmfruit" />
-                                    </div>
-                                    <div class="col-md-4">
-                                        <p>[g MS/planta]</p>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="dmleaf">DMLeaf - Materia seca inicial de hojas</label>
+                                        <div class="col-md-4">
+                                            <p:inputText id="dmleaf" class="form-control input-block-level required" value="#{simulacionBean.simulation.dmLeaf}">
+                                                <p:ajax process="@this"/>
+                                            </p:inputText>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p>[g MS/planta]</p>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="totleaf">TotLeafArea - Area foliar inicial</label>
+                                        <div class="col-md-4">
+                                            <p:inputText id="totleaf" class="form-control input-block-level required" value="#{simulacionBean.simulation.totLeafArea}">
+                                                <p:ajax process="@this"/>
+                                            </p:inputText>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p>[m2/planta]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="dmstem">DMStem - Materia seca inicial de tallos</label>
+                                        <div class="col-md-4">
+                                            <p:inputText id="dmstem" class="form-control input-block-level required" value="#{simulacionBean.simulation.dmStem}">
+                                                <p:ajax process="@this"/>
+                                            </p:inputText>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p>[g MS/planta]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="dmfruit">DMFruit - Materia seca inicial de frutos</label>
+                                        <div class="col-md-4">
+                                            <p:inputText id="dmfruit" class="form-control input-block-level required" value="#{simulacionBean.simulation.dmFruit}">
+                                                <p:ajax process="@this"/>
+                                            </p:inputText>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p>[g MS/planta]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p:commandButton actionListener="#{simulacionBean.launchSimulation()}" update="growl" value="Simular!!!"/>
                             </section>
                             <h3>Recomendación Fertilización y Riego</h3>
                             <section>

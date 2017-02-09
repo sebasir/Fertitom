@@ -1,9 +1,9 @@
 package net.hpclap.commons.tomatoservices.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Simulation implements Serializable {
+
     public static final long serialVersionUID = 1L;
 
     private Location locationWeather;
@@ -11,8 +11,8 @@ public class Simulation implements Serializable {
     private String fileWeatherName;
     private String fileSoilName;
     private CropType cropType;
-    private Date initDate;
-    private int daysNumber;
+    private String initDate;
+    private String finalDate;
     private double trgh;
     private double plm2;
     private double dmLeaf;
@@ -65,20 +65,20 @@ public class Simulation implements Serializable {
         this.cropType = cropType;
     }
 
-    public Date getInitDate() {
+    public String getInitDate() {
         return initDate;
     }
 
-    public void setInitDate(Date initDate) {
+    public void setInitDate(String initDate) {
         this.initDate = initDate;
     }
 
-    public int getDaysNumber() {
-        return daysNumber;
+    public String getFinalDate() {
+        return finalDate;
     }
 
-    public void setDaysNumber(int daysNumber) {
-        this.daysNumber = daysNumber;
+    public void setFinalDate(String finalDate) {
+        this.finalDate = finalDate;
     }
 
     public double getTrgh() {
@@ -167,5 +167,27 @@ public class Simulation implements Serializable {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    @Override
+    public String toString() {
+        return "locationWeather: " + locationWeather
+                + ", locationSoil: " + locationSoil
+                + ", fileWeatherName" + fileWeatherName
+                + ", fileSoilName: " + fileSoilName
+                + ", cropType: " + cropType
+                + ", initDate: " + initDate
+                + ", finalDate: " + finalDate
+                + ", trgh: " + trgh
+                + ", plm2: " + plm2
+                + ", dmLeaf: " + dmLeaf
+                + ", totLeafArea: " + totLeafArea
+                + ", dmStem: " + dmStem
+                + ", dmFruit: " + dmFruit
+                + ", recNitrogen: " + recNitrogen
+                + ", recPhosphorus: " + recPhosphorus
+                + ", recPotasium: " + recPotasium
+                + ", recWater: " + recWater
+                + ", result: " + result;
     }
 }
