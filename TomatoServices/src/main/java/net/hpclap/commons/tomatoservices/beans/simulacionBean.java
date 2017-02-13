@@ -65,6 +65,7 @@ public class simulacionBean implements Serializable {
         try {
             SimulationService service = new SimulationService(simulation);
             service.launchSimulation();
+            showMessage("Simulando", "", FacesMessage.SEVERITY_INFO);
         } catch (Exception e) {
             e.printStackTrace();
             showMessage("Error simulando.", "Hubo un error simulando: " + e.getMessage(), FacesMessage.SEVERITY_ERROR);

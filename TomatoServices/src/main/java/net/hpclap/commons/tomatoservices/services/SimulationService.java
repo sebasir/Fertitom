@@ -13,7 +13,6 @@ public class SimulationService implements Serializable {
     
     public void launchSimulation() throws Exception {
         System.out.println(" ---> Lanzando Simulación: " + simulation);
-        throw new Exception("SE SUPONE QUE VAMOS A SIMULAR!!!");
     }
     
     class IOStreamer {

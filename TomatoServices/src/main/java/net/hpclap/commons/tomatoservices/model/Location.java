@@ -3,6 +3,7 @@ package net.hpclap.commons.tomatoservices.model;
 import java.io.Serializable;
 
 public class Location implements Serializable {
+
     public static final long serialVersionUID = 1L;
 
     private int id;
@@ -55,7 +56,14 @@ public class Location implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "{id = " + id + ", name = " + name + ", lat = " + latitude + ", lon = " + longitude + "}";
+    public boolean equals(Object o) {
+        return o != null && o instanceof Location ? ((Location) o).getId() == this.id : false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + this.id;
+        return hash;
     }
 }
