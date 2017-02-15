@@ -32,13 +32,13 @@ form.steps({
         if (currentIndex === SIMUL_STEP) {
             $(".actions a:eq(1)").text("Simular");
         }
-        
+
         if (currentIndex === (SIMUL_STEP + 1)) {
             launchSimulation();
         } else if (currentIndex === SIMUL_STEP) {
             updateSummary();
         }
-        
+
         if (priorIndex < currentIndex) {
             $('#progressbar').css('width', (priorIndex * 20 + 40) + '%');
         } else {
@@ -53,12 +53,17 @@ form.steps({
         form[0].submit();
     },
     onCanceled: function (event) {
+        restart();
     }
 });
 
+function handleMessage(message) {
+    console.log(message);
+}
+
 $('.fecha').datepicker(
-    $.datepicker.regional['es']
-);
+        $.datepicker.regional['es']
+        );
 
 $('.fecha').datepicker('option', {
     dateFormat: 'yy-mm-dd'

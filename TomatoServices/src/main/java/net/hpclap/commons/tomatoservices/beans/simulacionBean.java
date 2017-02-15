@@ -15,6 +15,8 @@ import net.hpclap.commons.tomatoservices.services.SimulationService;
 import net.hpclap.commons.tomatoservices.services.Util;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
+import org.primefaces.push.EventBus;
+import org.primefaces.push.EventBusFactory;
 
 @ManagedBean
 @SessionScoped
@@ -26,7 +28,8 @@ public class simulacionBean implements Serializable {
     private UploadedFile fileWeather;
     private UploadedFile fileSoil;
     private long simDays;
-    
+    private final EventBus eventBus = EventBusFactory.getDefault().eventBus();
+
     public simulacionBean() {
     }
 
@@ -35,7 +38,7 @@ public class simulacionBean implements Serializable {
         locations = Util.locations;
         simulation = new Simulation();
     }
-    
+
     public void showMessage(String title, String message, FacesMessage.Severity severity) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, title, message));
     }
@@ -44,7 +47,7 @@ public class simulacionBean implements Serializable {
         simulation.setFileWeatherName(event.getFile().getFileName());
         showMessage("Archivo cargado!", "El archivo " + simulation.getFileWeatherName() + " ha sido cargado satisfactoriamente", FacesMessage.SEVERITY_INFO);
     }
-    
+
     public void calcDays() {
         if (simulation != null) {
             if (simulation.getInitDate() != null && !simulation.getInitDate().isEmpty()) {
@@ -60,18 +63,31 @@ public class simulacionBean implements Serializable {
             }
         }
     }
-    
+
     public void launchSimulation() {
         try {
-            SimulationService service = new SimulationService(simulation);
-            service.launchSimulation();
+            SimulationService service = new SimulationService(simulation, eventBus);
+            service.start();
             showMessage("Simulando", "", FacesMessage.SEVERITY_INFO);
         } catch (Exception e) {
-            e.printStackTrace();
             showMessage("Error simulando.", "Hubo un error simulando: " + e.getMessage(), FacesMessage.SEVERITY_ERROR);
         }
     }
-    
+
+    public void calcRecommendation() {
+        simulation.setRecNitrogen(5.2);
+        simulation.setRecPhosphorus(2.6);
+        simulation.setRecPotasium(3.4);
+        simulation.setRecWater(5.0);
+    }
+
+    public void restart() {
+        simulation = new Simulation();
+        fileWeather = null;
+        fileSoil = null;
+        simDays = 0;
+    }
+
     public List<Location> getLocations() {
         return locations;
     }

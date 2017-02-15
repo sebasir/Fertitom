@@ -1,21 +1,32 @@
 package net.hpclap.commons.tomatoservices.services;
 
 import java.io.Serializable;
+import java.util.Random;
 import net.hpclap.commons.tomatoservices.model.Simulation;
+import org.primefaces.push.EventBus;
 
-public class SimulationService implements Serializable {
+public class SimulationService extends Thread implements Serializable {
+    
     public static final long serialVersionUID = 1L;
-    private Simulation simulation;
-
-    public SimulationService(Simulation simulation) {
+    private final EventBus eventBus;
+    private final Simulation simulation;
+    
+    public SimulationService(Simulation simulation, EventBus eventBus) {
+        this.eventBus = eventBus;
         this.simulation = simulation;
     }
     
-    public void launchSimulation() throws Exception {
-        System.out.println(" ---> Lanzando Simulación: " + simulation);
-    }
-    
-    class IOStreamer {
-        
+    @Override
+    public void run() {
+        try {
+            int i = 0;
+            Random r = new Random();
+            while (i++ < 100) {
+                Thread.sleep(500);
+                eventBus.publish("mess", "Probando: Ejecución # i => " + r.nextInt());
+            }
+        } catch (Exception e) {
+            eventBus.publish("error", "Error: " + e.getMessage());
+        }
     }
 }

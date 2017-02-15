@@ -28,6 +28,7 @@
             <p>Cargando...</p>
         </div>
         <p:ajaxStatus onstart="$('#loading').removeClass('oculto')" onsuccess="$('#loading').addClass('oculto')" />
+        <p:socket onMessage="handleMessage" channel="/results" />
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -41,7 +42,8 @@
                     <div class="row">
                         <h:form id="simulForm" enctype="multipart/form-data">
                             <p:remoteCommand name="launchSimulation" actionListener="#{simulacionBean.launchSimulation()}"/>
-                            <p:remoteCommand name="updateSummary" actionListener="#{simulacionBean.launchSimulation()}" update="summary"/>
+                            <p:remoteCommand name="updateSummary" actionListener="#{simulacionBean.calcRecommendation()}" update="summary"/>
+                            <p:remoteCommand name="restart" actionListener="#{simulacionBean.restart()}" update="simulForm"/>
                             <p:growl id="growl" showDetail="true"/>
                             <h3>Seleccionar parámetros espacio-temporales</h3>
                             <section style="width:100%">
@@ -300,7 +302,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-6 control-label">Nitrógeno (N):</label>
                                                     <div class="col-md-6">
-                                                        <input class="summaryField form-control input-block-level" readonly="true" value="5.2 [kg/m2]"/>
+                                                        <h:inputText value="#{simulacionBean.simulation.recNitrogen} [kg/m2]" readonly="true" styleClass="form-control input-block-level"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -308,7 +310,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-6 control-label">Fósforo (P):</label>
                                                     <div class="col-md-6">
-                                                        <input class="summaryField form-control input-block-level" readonly="true" value="2.6 [kg/m2]"/>
+                                                        <h:inputText value="#{simulacionBean.simulation.recPhosphorus} [kg/m2]" readonly="true" styleClass="form-control input-block-level"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -316,7 +318,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-6 control-label">Potasio (K):</label>
                                                     <div class="col-md-6">
-                                                        <input class="summaryField form-control input-block-level" readonly="true" value="3.4 [kg/m2]"/>
+                                                        <h:inputText value="#{simulacionBean.simulation.recPotasium} [kg/m2]" readonly="true" styleClass="form-control input-block-level"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -324,7 +326,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-6 control-label">Aportación de agua:</label>
                                                     <div class="col-md-6">
-                                                        <input class="summaryField form-control input-block-level" readonly="true" value="5 [lt/m2/día]"/>
+                                                        <h:inputText value="#{simulacionBean.simulation.recWater} [lt/m2/día]" readonly="true" styleClass="form-control input-block-level"/>
                                                     </div>
                                                 </div>
                                             </div>

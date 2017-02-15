@@ -13,16 +13,16 @@ public class Simulation implements Serializable {
     private CropType cropType;
     private String initDate;
     private String finalDate;
-    private double trgh;
-    private double plm2;
-    private double dmLeaf;
-    private double totLeafArea;
-    private double dmStem;
-    private double dmFruit;
-    private double recNitrogen;
-    private double recPhosphorus;
-    private double recPotasium;
-    private double recWater;
+    private Double trgh;
+    private Double plm2;
+    private Double dmLeaf;
+    private Double totLeafArea;
+    private Double dmStem;
+    private Double dmFruit;
+    private Double recNitrogen;
+    private Double recPhosphorus;
+    private Double recPotasium;
+    private Double recWater;
     private String result;
 
     public Location getLocationWeather() {
@@ -81,83 +81,83 @@ public class Simulation implements Serializable {
         this.finalDate = finalDate;
     }
 
-    public double getTrgh() {
+    public Double getTrgh() {
         return trgh;
     }
 
-    public void setTrgh(double trgh) {
+    public void setTrgh(Double trgh) {
         this.trgh = trgh;
     }
 
-    public double getPlm2() {
+    public Double getPlm2() {
         return plm2;
     }
 
-    public void setPlm2(double plm2) {
+    public void setPlm2(Double plm2) {
         this.plm2 = plm2;
     }
 
-    public double getDmLeaf() {
+    public Double getDmLeaf() {
         return dmLeaf;
     }
 
-    public void setDmLeaf(double dmLeaf) {
+    public void setDmLeaf(Double dmLeaf) {
         this.dmLeaf = dmLeaf;
     }
 
-    public double getTotLeafArea() {
+    public Double getTotLeafArea() {
         return totLeafArea;
     }
 
-    public void setTotLeafArea(double totLeafArea) {
+    public void setTotLeafArea(Double totLeafArea) {
         this.totLeafArea = totLeafArea;
     }
 
-    public double getDmStem() {
+    public Double getDmStem() {
         return dmStem;
     }
 
-    public void setDmStem(double dmStem) {
+    public void setDmStem(Double dmStem) {
         this.dmStem = dmStem;
     }
 
-    public double getDmFruit() {
+    public Double getDmFruit() {
         return dmFruit;
     }
 
-    public void setDmFruit(double dmFruit) {
+    public void setDmFruit(Double dmFruit) {
         this.dmFruit = dmFruit;
     }
 
-    public double getRecNitrogen() {
+    public Double getRecNitrogen() {
         return recNitrogen;
     }
 
-    public void setRecNitrogen(double recNitrogen) {
+    public void setRecNitrogen(Double recNitrogen) {
         this.recNitrogen = recNitrogen;
     }
 
-    public double getRecPhosphorus() {
+    public Double getRecPhosphorus() {
         return recPhosphorus;
     }
 
-    public void setRecPhosphorus(double recPhosphorus) {
+    public void setRecPhosphorus(Double recPhosphorus) {
         this.recPhosphorus = recPhosphorus;
     }
 
-    public double getRecPotasium() {
+    public Double getRecPotasium() {
         return recPotasium;
     }
 
-    public void setRecPotasium(double recPotasium) {
+    public void setRecPotasium(Double recPotasium) {
         this.recPotasium = recPotasium;
     }
 
-    public double getRecWater() {
+    public Double getRecWater() {
         return recWater;
     }
 
-    public void setRecWater(double recWater) {
+    public void setRecWater(Double recWater) {
         this.recWater = recWater;
     }
 
