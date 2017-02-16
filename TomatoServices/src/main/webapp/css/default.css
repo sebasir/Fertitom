@@ -162,3 +162,23 @@ body {
     font-size: 3em;
     color: #1d941d;
 }
+
+.rowOutput {
+    position: absolute;
+    width: 98%;
+    height: 95%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.resultOutput {
+    background-color: white;
+    min-height: 100%;
+    margin-left: 1em;
+    border-radius: 0.5em;
+    display: block;
+    border: solid 1px #dcdcdc;
+    padding-top: 0.7em;
+    font-family: 'Consolas', monospace;
+    line-height: 0.5em;
+}

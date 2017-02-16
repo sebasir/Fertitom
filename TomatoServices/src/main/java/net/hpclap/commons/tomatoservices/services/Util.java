@@ -13,6 +13,7 @@ public class Util implements Serializable {
 
     class Constant {
 
+        public static final String PUSH_URL = "/results";
         public static final String CONFIG_FILE = "/WEB-INF/classes/configuration/configuration.xml";
     }
 }

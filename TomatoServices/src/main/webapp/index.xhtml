@@ -28,7 +28,6 @@
             <p>Cargando...</p>
         </div>
         <p:ajaxStatus onstart="$('#loading').removeClass('oculto')" onsuccess="$('#loading').addClass('oculto')" />
-        <p:socket onMessage="handleMessage" channel="/results" />
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -41,7 +40,8 @@
                     </div>
                     <div class="row">
                         <h:form id="simulForm" enctype="multipart/form-data">
-                            <p:remoteCommand name="launchSimulation" actionListener="#{simulacionBean.launchSimulation()}"/>
+                            <p:socket onMessage="handleMessage" channel="/results" />
+                            <p:remoteCommand name="launchSimulation" actionListener="#{simulacionBean.launchSimulation()}" update="growl"/>
                             <p:remoteCommand name="updateSummary" actionListener="#{simulacionBean.calcRecommendation()}" update="summary"/>
                             <p:remoteCommand name="restart" actionListener="#{simulacionBean.restart()}" update="simulForm"/>
                             <p:growl id="growl" showDetail="true"/>
@@ -330,7 +330,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </h:panelGroup>
@@ -338,7 +337,9 @@
                             <h3>Reporte de Resultados</h3>
                             <section>
                                 <div class="form-group">
-                                    Resultados ...
+                                    <div class="row rowOutput">
+                                        <div id="resultOutput" class="resultOutput col-md-12"></div>
+                                    </div>
                                 </div>
                             </section>
                         </h:form>

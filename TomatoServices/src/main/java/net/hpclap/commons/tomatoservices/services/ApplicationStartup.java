@@ -11,11 +11,13 @@ import net.hpclap.commons.tomatoservices.model.Configuration;
 
 @WebListener
 public class ApplicationStartup implements ServletContextListener, Serializable {
+
     public static final long serialVersionUID = 1L;
-    
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         try {
+            System.out.println("Inicializando Ubicaciones...");
             InputStream is = sce.getServletContext().getResourceAsStream(Util.Constant.CONFIG_FILE);
             JAXBContext jaxbContext = JAXBContext.newInstance(Configuration.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
@@ -23,6 +25,7 @@ public class ApplicationStartup implements ServletContextListener, Serializable 
                 Configuration config = (Configuration) jaxbUnmarshaller.unmarshal(is);
                 Util.locations = config.getLocation();
             }
+            System.out.println("Ubicaciones -> " + Util.locations);
         } catch (Exception e) {
             e.printStackTrace();
         }

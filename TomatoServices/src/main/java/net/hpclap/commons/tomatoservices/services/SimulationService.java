@@ -21,12 +21,12 @@ public class SimulationService extends Thread implements Serializable {
         try {
             int i = 0;
             Random r = new Random();
-            while (i++ < 100) {
+            while (i++ < 10) {
                 Thread.sleep(500);
-                eventBus.publish("mess", "Probando: Ejecución # i => " + r.nextInt());
+                eventBus.publish(Util.Constant.PUSH_URL, "Probando: Ejecución # " + i + " => " + r.nextInt());
             }
         } catch (Exception e) {
-            eventBus.publish("error", "Error: " + e.getMessage());
+            eventBus.publish(Util.Constant.PUSH_URL, "Error: " + e.getMessage());
         }
     }
 }

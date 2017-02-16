@@ -34,6 +34,7 @@ form.steps({
         }
 
         if (currentIndex === (SIMUL_STEP + 1)) {
+            $('#resultOutput').empty();
             launchSimulation();
         } else if (currentIndex === SIMUL_STEP) {
             updateSummary();
@@ -59,11 +60,10 @@ form.steps({
 
 function handleMessage(message) {
     console.log(message);
+    $('#resultOutput').append($('<p>' + message + '</p>'));
 }
 
-$('.fecha').datepicker(
-        $.datepicker.regional['es']
-        );
+$('.fecha').datepicker($.datepicker.regional['es']);
 
 $('.fecha').datepicker('option', {
     dateFormat: 'yy-mm-dd'
