@@ -10,11 +10,15 @@ public class Util implements Serializable {
 
     public static List<Location> locations;
     public static String fileServer;
+    public static String OS = System.getProperty("os.name").toLowerCase();
 
     public class Constant {
 
         public static final String CHANNEL = "/results";
         public static final String CONFIG_FILE = "/WEB-INF/classes/configuration/configuration.xml";
-        public final String OS = System.getProperty("os.name").toLowerCase();
+    }
+    
+    public static boolean isWindows() {
+        return OS.contains("win");
     }
 }

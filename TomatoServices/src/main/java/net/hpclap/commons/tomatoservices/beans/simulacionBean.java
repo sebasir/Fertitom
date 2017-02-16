@@ -1,6 +1,7 @@
 package net.hpclap.commons.tomatoservices.beans;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -56,7 +57,7 @@ public class simulacionBean implements Serializable {
                     try {
                         simDays = (dateFormat.parse(simulation.getFinalDate()).getTime() - dateFormat.parse(simulation.getInitDate()).getTime()) / (1000 * 60 * 60 * 24);
                         showMessage("Numero de días simulados = " + simDays, null, FacesMessage.SEVERITY_INFO);
-                    } catch (Exception e) {
+                    } catch (ParseException e) {
                         showMessage("Error", "Ingresa fechas válidas!!!", FacesMessage.SEVERITY_ERROR);
                     }
                 }
