@@ -11,9 +11,10 @@ public class Util implements Serializable {
     public static List<Location> locations;
     public static String fileServer;
 
-    class Constant {
+    public class Constant {
 
-        public static final String PUSH_URL = "/results";
+        public static final String CHANNEL = "/results";
         public static final String CONFIG_FILE = "/WEB-INF/classes/configuration/configuration.xml";
+        public final String OS = System.getProperty("os.name").toLowerCase();
     }
 }

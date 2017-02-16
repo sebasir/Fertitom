@@ -39,8 +39,8 @@
                         </div>
                     </div>
                     <div class="row">
+                        <p:socket onMessage="handleMessage" channel="/results" />
                         <h:form id="simulForm" enctype="multipart/form-data">
-                            <p:socket onMessage="handleMessage" channel="/results" />
                             <p:remoteCommand name="launchSimulation" actionListener="#{simulacionBean.launchSimulation()}" update="growl"/>
                             <p:remoteCommand name="updateSummary" actionListener="#{simulacionBean.calcRecommendation()}" update="summary"/>
                             <p:remoteCommand name="restart" actionListener="#{simulacionBean.restart()}" update="simulForm"/>
