@@ -5,10 +5,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import net.hpclap.commons.tomatoservices.model.CropType;
 import net.hpclap.commons.tomatoservices.model.Location;
 import net.hpclap.commons.tomatoservices.model.Simulation;
@@ -19,7 +19,7 @@ import org.primefaces.model.UploadedFile;
 import org.primefaces.push.EventBus;
 import org.primefaces.push.EventBusFactory;
 
-@ManagedBean
+@Named
 @SessionScoped
 public class simulacionBean implements Serializable {
 
