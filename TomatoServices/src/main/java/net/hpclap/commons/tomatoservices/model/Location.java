@@ -66,4 +66,9 @@ public class Location implements Serializable {
         hash = 97 * hash + this.id;
         return hash;
     }
+    
+    @Override
+    public String toString() {
+        return "ID: " + this.id;
+    }
 }
