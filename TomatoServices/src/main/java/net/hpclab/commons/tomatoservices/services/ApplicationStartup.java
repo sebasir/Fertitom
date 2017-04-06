@@ -1,4 +1,4 @@
-package net.hpclap.commons.tomatoservices.services;
+package net.hpclab.commons.tomatoservices.services;
 
 import java.io.InputStream;
 import java.io.Serializable;
@@ -7,7 +7,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
-import net.hpclap.commons.tomatoservices.model.Configuration;
+import net.hpclab.commons.tomatoservices.model.Configuration;
 
 @WebListener
 public class ApplicationStartup implements ServletContextListener, Serializable {
@@ -26,6 +26,8 @@ public class ApplicationStartup implements ServletContextListener, Serializable 
                 Util.locations = config.getLocation();
             }
             System.out.println("Ubicaciones -> " + Util.locations);
+            FileLoadService fls = new FileLoadService(Util.locations, sce.getServletContext());
+            fls.loadFiles();
         } catch (Exception e) {
             e.printStackTrace();
         }

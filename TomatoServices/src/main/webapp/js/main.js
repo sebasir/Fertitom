@@ -1,5 +1,6 @@
-var SIMUL_STEP = 2;
+var SIMUL_STEP =3;
 var form = $("#simulForm").show();
+var map;
 
 form.steps({
     headerTag: 'h3',
@@ -63,13 +64,21 @@ function handleMessage(message) {
     $('#resultOutput').append($('<p>' + message + '</p>'));
 }
 
-$('.fecha').datepicker($.datepicker.regional['es']);
-
-$('.fecha').datepicker('option', {
-    dateFormat: 'yy-mm-dd'
-});
+function setFecha() {
+    $('.fecha').datepicker($.datepicker.regional['es']);
+    $('.fecha').each(function (index) {
+        var datepicker_default_val = $(this).val();
+        $(this).datepicker({numberOfMonths: 3, showButtonPanel: true});
+        $(this).datepicker("option", "dateFormat", 'yy-mm-dd');
+        $(this).datepicker("setDate", datepicker_default_val);
+    });
+    $('.fecha').datepicker('option', {
+        dateFormat: 'yy-mm-dd'
+    });
+}
 
 $(document).ready(function () {
+    setFecha();
     google.maps.event.addDomListener(window, 'load', initialize);
 });
 
@@ -79,5 +88,14 @@ function initialize() {
         center: {lat: 4.583333, lng: -74.066667},
         zoom: 5
     };
-    var map = new google.maps.Map(mapCanvas, mapOptions);
+    map = new google.maps.Map(mapCanvas, mapOptions);
+}
+
+function setCenter(paramLat, paramLon) {
+    var mapCanvas = document.getElementById('map');
+    var mapOptions = {
+        center: {lat: paramLat, lng: paramLon},
+        zoom: 5
+    };
+    map = new google.maps.Map(mapCanvas, mapOptions);
 }

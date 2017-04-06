@@ -1,4 +1,4 @@
-package net.hpclap.commons.tomatoservices.beans;
+package net.hpclab.commons.tomatoservices.beans;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -9,13 +9,10 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import net.hpclap.commons.tomatoservices.model.CropType;
-import net.hpclap.commons.tomatoservices.model.Location;
-import net.hpclap.commons.tomatoservices.model.Simulation;
-import net.hpclap.commons.tomatoservices.services.SimulationService;
-import net.hpclap.commons.tomatoservices.services.Util;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
+import net.hpclab.commons.tomatoservices.model.Location;
+import net.hpclab.commons.tomatoservices.model.Simulation;
+import net.hpclab.commons.tomatoservices.services.SimulationService;
+import net.hpclab.commons.tomatoservices.services.Util;
 import org.primefaces.push.EventBus;
 import org.primefaces.push.EventBusFactory;
 
@@ -26,8 +23,6 @@ public class simulacionBean implements Serializable {
     public static final long serialVersionUID = 1L;
     private List<Location> locations;
     private Simulation simulation;
-    private UploadedFile fileWeather;
-    private UploadedFile fileSoil;
     private long simDays;
     private final EventBus eventBus = EventBusFactory.getDefault().eventBus();
 
@@ -42,11 +37,6 @@ public class simulacionBean implements Serializable {
 
     public void showMessage(String title, String message, FacesMessage.Severity severity) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, title, message));
-    }
-
-    public void handleFileUpload(FileUploadEvent event) {
-        simulation.setFileWeatherName(event.getFile().getFileName());
-        showMessage("Archivo cargado!", "El archivo " + simulation.getFileWeatherName() + " ha sido cargado satisfactoriamente", FacesMessage.SEVERITY_INFO);
     }
 
     public void calcDays() {
@@ -76,16 +66,18 @@ public class simulacionBean implements Serializable {
     }
 
     public void calcRecommendation() {
-        simulation.setRecNitrogen(5.2);
-        simulation.setRecPhosphorus(2.6);
-        simulation.setRecPotasium(3.4);
+        simulation.setRecNitrogen(300.0);
+        simulation.setRecPhosphorus(200.0);
+        simulation.setRecPotasium(600.0);
         simulation.setRecWater(5.0);
+        simulation.setDmLeaf(2.0);
+        simulation.setTotLeafArea(2.0);
+        simulation.setDmStem(2.0);
+        simulation.setDmFruit(2.0);
     }
 
     public void restart() {
         simulation = new Simulation();
-        fileWeather = null;
-        fileSoil = null;
         simDays = 0;
     }
 
@@ -105,23 +97,4 @@ public class simulacionBean implements Serializable {
         this.simulation = simulation;
     }
 
-    public UploadedFile getFileWeather() {
-        return fileWeather;
-    }
-
-    public void setFileWeather(UploadedFile fileWeather) {
-        this.fileWeather = fileWeather;
-    }
-
-    public UploadedFile getFileSoil() {
-        return fileSoil;
-    }
-
-    public void setFileSoil(UploadedFile fileSoil) {
-        this.fileSoil = fileSoil;
-    }
-
-    public CropType[] getCropTypes() {
-        return CropType.values();
-    }
 }

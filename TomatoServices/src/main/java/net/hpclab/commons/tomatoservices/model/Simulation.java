@@ -1,4 +1,4 @@
-package net.hpclap.commons.tomatoservices.model;
+package net.hpclab.commons.tomatoservices.model;
 
 import java.io.Serializable;
 
@@ -6,11 +6,7 @@ public class Simulation implements Serializable {
 
     public static final long serialVersionUID = 1L;
 
-    private Location locationWeather;
-    private Location locationSoil;
-    private String fileWeatherName;
-    private String fileSoilName;
-    private CropType cropType;
+    private Location location;
     private String initDate;
     private String finalDate;
     private Double trgh;
@@ -25,44 +21,12 @@ public class Simulation implements Serializable {
     private Double recWater;
     private String result;
 
-    public Location getLocationWeather() {
-        return locationWeather;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setLocationWeather(Location locationWeather) {
-        this.locationWeather = locationWeather;
-    }
-
-    public Location getLocationSoil() {
-        return locationSoil;
-    }
-
-    public void setLocationSoil(Location locationSoil) {
-        this.locationSoil = locationSoil;
-    }
-
-    public String getFileWeatherName() {
-        return fileWeatherName;
-    }
-
-    public void setFileWeatherName(String fileWeatherName) {
-        this.fileWeatherName = fileWeatherName;
-    }
-
-    public String getFileSoilName() {
-        return fileSoilName;
-    }
-
-    public void setFileSoilName(String fileSoilName) {
-        this.fileSoilName = fileSoilName;
-    }
-
-    public CropType getCropType() {
-        return cropType;
-    }
-
-    public void setCropType(CropType cropType) {
-        this.cropType = cropType;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public String getInitDate() {
@@ -167,27 +131,5 @@ public class Simulation implements Serializable {
 
     public void setResult(String result) {
         this.result = result;
-    }
-
-    @Override
-    public String toString() {
-        return "locationWeather: " + locationWeather
-                + ", locationSoil: " + locationSoil
-                + ", fileWeatherName" + fileWeatherName
-                + ", fileSoilName: " + fileSoilName
-                + ", cropType: " + cropType
-                + ", initDate: " + initDate
-                + ", finalDate: " + finalDate
-                + ", trgh: " + trgh
-                + ", plm2: " + plm2
-                + ", dmLeaf: " + dmLeaf
-                + ", totLeafArea: " + totLeafArea
-                + ", dmStem: " + dmStem
-                + ", dmFruit: " + dmFruit
-                + ", recNitrogen: " + recNitrogen
-                + ", recPhosphorus: " + recPhosphorus
-                + ", recPotasium: " + recPotasium
-                + ", recWater: " + recWater
-                + ", result: " + result;
     }
 }

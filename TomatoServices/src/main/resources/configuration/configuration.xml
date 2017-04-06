@@ -2,20 +2,62 @@
 <configuration>
     <location>
         <id>1</id>
-        <name>Villa de Leyva</name>
+        <name>Santa Sofía I</name>
         <latitude>123</latitude>
         <longitude>123</longitude>
+        <altitude>2347</altitude>
+        <department>Boyacá</department>
+        <municipality>Santa Sofía</municipality>
+        <type>1</type>
+        <trgh>1</trgh>
+        <fileweather>BSS1_clima.csv</fileweather>
+        <filesoil>BSS1_clima.csv</filesoil>
+        <fileirrigation>BSS1_riego.csv</fileirrigation>
+        <filelocation>BSS1_ubic.csv</filelocation>
     </location>
     <location>
         <id>2</id>
-        <name>San Gil</name>
+        <name>Santa Sofía II</name>
         <latitude>123</latitude>
         <longitude>123</longitude>
+        <altitude></altitude>
+        <department></department>
+        <municipality></municipality>
+        <type>1</type>
+        <trgh>1</trgh>
+        <fileweather>BSS2_clima.csv</fileweather>
+        <filesoil>BSS1_clima.csv</filesoil>
+        <fileirrigation>BSS1_riego.csv</fileirrigation>
+        <filelocation>BSS1_ubic.csv</filelocation>
     </location>
     <location>
         <id>3</id>
-        <name>La Tebaida</name>
+        <name>Páramo</name>
         <latitude>123</latitude>
         <longitude>123</longitude>
+        <altitude></altitude>
+        <department></department>
+        <municipality></municipality>
+        <type></type>
+        <trgh></trgh>
+        <fileweather>BSS1_clima.csv</fileweather>
+        <filesoil>BSS1_clima.csv</filesoil>
+        <fileirrigation>BSS1_riego.csv</fileirrigation>
+        <filelocation>BSS1_ubic.csv</filelocation>
+    </location>
+    <location>
+        <id>4</id>
+        <name>San Gil</name>
+        <latitude>123</latitude>
+        <longitude>123</longitude>
+        <altitude></altitude>
+        <department></department>
+        <municipality></municipality>
+        <type></type>
+        <trgh></trgh>
+        <fileweather>BSS1_clima.csv</fileweather>
+        <filesoil>BSS1_clima.csv</filesoil>
+        <fileirrigation>BSS1_riego.csv</fileirrigation>
+        <filelocation>BSS1_ubic.csv</filelocation>
     </location>
 </configuration>

@@ -1,10 +1,10 @@
-package net.hpclap.commons.tomatoservices.services;
+package net.hpclab.commons.tomatoservices.services;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.Random;
-import net.hpclap.commons.tomatoservices.model.Simulation;
+import net.hpclab.commons.tomatoservices.model.Simulation;
 import org.primefaces.push.EventBus;
 
 public class SimulationService extends Thread implements Serializable {

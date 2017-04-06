@@ -61,8 +61,8 @@ body {
 }
 
 .title {
-    font-size: 90px;
-    line-height: 100px;
+    font-size: 80px;
+    line-height: 90px;
 }
 
 .middle {
@@ -75,7 +75,7 @@ body {
     vertical-align: bottom;
     margin: auto;
     color: white;
-    line-height: 100px;
+    line-height: 90px;
 }
 
 .right {
@@ -166,14 +166,14 @@ body {
 .rowOutput {
     position: absolute;
     width: 98%;
-    height: 95%;
+    height: 20%;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
 .resultOutput {
     background-color: white;
-    min-height: 100%;
+    min-height: 20%;
     margin-left: 1em;
     border-radius: 0.5em;
     display: block;

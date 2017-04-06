@@ -1,4 +1,4 @@
-package net.hpclap.commons.tomatoservices.model;
+package net.hpclab.commons.tomatoservices.model;
 
 import java.io.Serializable;
 
