@@ -16,6 +16,7 @@ public class Location implements Serializable {
     private double trgh;
     private String initDate;
     private String finalDate;
+    private String prefix;
     private String fileweather;
     private String filesoil;
     private String fileubic;
@@ -24,7 +25,7 @@ public class Location implements Serializable {
 
     }
 
-    public Location(int id, String department, String municipality, int type, double latitude, double longitude, double altitude, double trgh, String initDate, String finalDate, String fileweather, String filesoil, String fileubic) {
+    public Location(int id, String department, String municipality, int type, double latitude, double longitude, double altitude, double trgh, String initDate, String finalDate, String prefix, String fileweather, String filesoil, String fileubic) {
         this.id = id;
         this.department = department;
         this.municipality = municipality;
@@ -35,11 +36,12 @@ public class Location implements Serializable {
         this.trgh = trgh;
         this.initDate = initDate;
         this.finalDate = finalDate;
+        this.prefix = prefix;
         this.fileweather = fileweather;
         this.filesoil = filesoil;
         this.fileubic = fileubic;
     }
-
+    
     public int getId() {
         return id;
     }
@@ -120,6 +122,14 @@ public class Location implements Serializable {
         this.finalDate = finalDate;
     }
 
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+    
     public String getFileweather() {
         return fileweather;
     }

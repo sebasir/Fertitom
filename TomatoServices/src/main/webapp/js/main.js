@@ -41,9 +41,9 @@ form.steps({
         else if (currentIndex === (SIMUL_STEP + 1)) {
             $('#resultOutput').empty();
             launchSimulation();
-        } else if (currentIndex === SIMUL_STEP) {
+        }/* else if (currentIndex === SIMUL_STEP) {
             updateSummary();
-        }
+        }*/
 
         if (priorIndex < currentIndex) {
             $('#progressbar').css('width', (priorIndex * 20 + 40) + '%');
@@ -65,7 +65,24 @@ form.steps({
 
 function handleMessage(message) {
     console.log(message);
-    //$('#resultOutput').append($('<p>' + message + '</p>'));
+    if(message.startsWith('simulationId')) {
+        var simulationId = message.substring(13);
+        var src;
+        $('#resultPlant, #resultSoil').find('.res-img').each(function() {
+            src = $(this).prop("src");
+            src = src.split('simulationId').join(simulationId);
+            $(this).prop("src", src);
+        });
+        $('#resultPlant, #resultSoil').find('.res-csv').each(function() {
+            src = $(this).prop("href");
+            src = src.split('simulationId').join(simulationId);
+            $(this).prop("href", src);
+        });
+        $('#waitResultPlant').toggleClass('oculto');
+        $('#waitResultSoil').toggleClass('oculto');
+        $('#resultPlant').toggleClass('oculto');
+        $('#resultSoil').toggleClass('oculto');
+    }
 }
 
 function setFecha() {

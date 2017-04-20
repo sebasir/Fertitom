@@ -25,18 +25,25 @@ public class ApplicationStartup implements ServletContextListener, Serializable 
             if (is != null) {
                 Configuration config = (Configuration) jaxbUnmarshaller.unmarshal(is);
                 Util.locations = config.getLocation();
-                Util.pathNix = config.getPathNix();
-                Util.pathWin = config.getPathWin();
-                Util.fileParam = config.getFileParam();
-                Util.pathFiles = Util.isWindows()? Util.pathWin: Util.pathNix;
-                Util.pathInput = Util.pathFiles + File.separator + config.getPathInput();
-                Util.pathOutput = Util.pathFiles + File.separator + config.getPathOutput();
+                Util.pathNixInput = config.getPathNixInput();
+                Util.pathWinInput = config.getPathWinInput();
+                Util.pathNixOutput = config.getPathNixOutput();
+                Util.pathWinOutput = config.getPathWinOutput();
+                Util.pathFilesInput = Util.isWindows()? Util.pathWinInput: Util.pathNixInput;
+                Util.pathFilesOutput = Util.isWindows()? Util.pathWinOutput: Util.pathNixOutput;
+                Util.pathInput = Util.pathFilesInput + File.separator + config.getPathInput();
+                Util.pathOutput = Util.pathFilesOutput + File.separator + config.getPathOutput();
+                Util.fileParam = Util.pathInput + File.separator + config.getFileParam();
+                Util.scriptName = Util.pathFilesInput + File.separator + config.getScriptName();
             }
             
             System.out.println("Ubicaciones = " + Util.locations);
-            System.out.println("PathFiles = " + Util.pathFiles + " (r = " + Util.isReadable(Util.pathFiles) + ", w = " + Util.isWritable(Util.pathFiles) + ")");
+            System.out.println("PathFilesInput = " + Util.pathFilesInput + " (r = " + Util.isReadable(Util.pathFilesInput) + ", w = " + Util.isWritable(Util.pathFilesInput) + ")");
+            System.out.println("PathFilesOutput = " + Util.pathFilesOutput + " (r = " + Util.isReadable(Util.pathFilesOutput) + ", w = " + Util.isWritable(Util.pathFilesOutput) + ")");
             System.out.println("PathInput = " + Util.pathInput + " (r = " + Util.isReadable(Util.pathInput) + ", w = " + Util.isWritable(Util.pathInput) + ")");
             System.out.println("PathOutput = " + Util.pathOutput + " (r = " + Util.isReadable(Util.pathOutput) + ", w = " + Util.isWritable(Util.pathOutput) + ")");
+            System.out.println("FileParam = " + Util.fileParam + " (r = " + Util.isReadable(Util.fileParam) + ", w = " + Util.isWritable(Util.fileParam) + ")");
+            System.out.println("ScriptName = " + Util.scriptName + " (r = " + Util.isReadable(Util.scriptName) + ", w = " + Util.isWritable(Util.scriptName) + ")");
             
             FileLoadService fls = new FileLoadService(Util.locations);
             fls.loadFiles();

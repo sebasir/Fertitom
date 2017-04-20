@@ -32,7 +32,7 @@ public class FileLoadService implements Serializable {
         String line;
         String[] commaLine;
         int i = 0;
-        in = new FileInputStream(Util.pathInput + File.separator + Util.fileParam);
+        in = new FileInputStream(Util.fileParam);
         reader = new BufferedReader(new InputStreamReader(in));
         Util.parameters = new ArrayList<>();
         Property property;

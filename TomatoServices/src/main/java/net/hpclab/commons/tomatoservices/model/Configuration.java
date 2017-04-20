@@ -9,11 +9,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Configuration implements Serializable {
     public static final long serialVersionUID = 1L;
 
-    private String pathNix;
-    private String pathWin;
+    private String pathNixInput;
+    private String pathWinInput;
+    private String pathNixOutput;
+    private String pathWinOutput;
     private String pathInput;
     private String pathOutput;
     private String fileParam;
+    private String scriptName;
     private List<Location> location;
     
     public Configuration() {
@@ -21,21 +24,39 @@ public class Configuration implements Serializable {
     }
 
     @XmlElement
-    public String getPathNix() {
-        return pathNix;
+    public String getPathNixInput() {
+        return pathNixInput;
     }
 
-    public void setPathNix(String pathNix) {
-        this.pathNix = pathNix;
+    public void setPathNixInput(String pathNixInput) {
+        this.pathNixInput = pathNixInput;
     }
 
     @XmlElement
-    public String getPathWin() {
-        return pathWin;
+    public String getPathWinInput() {
+        return pathWinInput;
     }
 
-    public void setPathWin(String pathWin) {
-        this.pathWin = pathWin;
+    public void setPathWinInput(String pathWinInput) {
+        this.pathWinInput = pathWinInput;
+    }
+    
+    @XmlElement
+    public String getPathNixOutput() {
+        return pathNixOutput;
+    }
+
+    public void setPathNixOutput(String pathNixOutput) {
+        this.pathNixOutput = pathNixOutput;
+    }
+
+    @XmlElement
+    public String getPathWinOutput() {
+        return pathWinOutput;
+    }
+
+    public void setPathWinOutput(String pathWinOutput) {
+        this.pathWinOutput = pathWinOutput;
     }
 
     @XmlElement
@@ -63,6 +84,14 @@ public class Configuration implements Serializable {
 
     public void setFileParam(String fileParam) {
         this.fileParam = fileParam;
+    }
+
+    public String getScriptName() {
+        return scriptName;
+    }
+
+    public void setScriptName(String scriptName) {
+        this.scriptName = scriptName;
     }
 
     @XmlElement

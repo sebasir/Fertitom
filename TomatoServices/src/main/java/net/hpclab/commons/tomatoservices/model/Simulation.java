@@ -6,6 +6,7 @@ public class Simulation implements Serializable {
 
     public static final long serialVersionUID = 1L;
 
+    private String id;
     private Location location;
     private String initDate;
     private String finalDate;
@@ -16,6 +17,14 @@ public class Simulation implements Serializable {
     private Double recWater;
     private String result;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
     public Location getLocation() {
         return location;
     }

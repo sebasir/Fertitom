@@ -203,72 +203,136 @@
                             <!-- Página 4 -->
                             <h3>Reporte de Resultados - Planta</h3>
                             <section>
-                                <!-- div class="form-group">
-                                    <div class="row rowOutput">
-                                        <div id="resultOutput" class="resultOutput col-md-12"></div>
-                                    </div>
-                                </div -->
-                                <div class="row">
-                                    <div class="col-md-6" style="text-align: justify;font-size: small">                                             
-                                        <center><img src="images/2017-03-30_BSS1_PlantaET1.png" width="400px" alt=""/></center>
-                                    </div>
-                                    <div class="col-md-6" style="text-align: justify;font-size: small"> 
-                                        <center>
-                                            <img src="images/2017-03-30_BSS1_PlantaFrutos1.png" width="400px" alt=""/>
-                                        </center>
-                                    </div>
+                                <div id="waitResultPlant">
+                                    <h2>Ejecutando Script..</h2>
+                                    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
                                 </div>
-                                <hr/>
-                                <div class="row">
-                                    <div class="col-md-6" style="text-align: justify;font-size: small"> 
-                                        <center><img src="images/2017-03-30_BSS1_PlantaLAI1.png" width="400px" alt=""/></center>
+                                <div id="resultPlant" class="oculto">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="thumbnail">
+                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=1"/>
+                                                <div class="caption">
+                                                    <p>Gráfica 1: Materia Seca Total</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="thumbnail">
+                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=2"/>
+                                                <div class="caption">
+                                                    <p>Gráfica 2: Frutos</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="thumbnail">
+                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=3"/>
+                                                <div class="caption">
+                                                    <p>Gráfica 3: Evapotranspiración</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6" style="text-align: justify;font-size: small">
-                                        <center><img src="images/2017-03-30_BSS1_PlantaOrganos1.png" width="400px" alt=""/></center>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="thumbnail">
+                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=4"/>
+                                                <div class="caption">
+                                                    <p>Gráfica 4: Área foliar</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="thumbnail">
+                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=5"/>
+                                                <div class="caption">
+                                                    <p>Gráfica 5: Nitrógeno</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="thumbnail">
+                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=6"/>
+                                                <div class="caption">
+                                                    <p>Gráfica 6: P2O5 (Fósforo)</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <hr/>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <a href="results/valoresparametros.csv" target="_blank">Descargar archivo de resultados</a>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-4 col-md-offset-4">
+                                            <div class="thumbnail">
+                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=7"/>
+                                                <div class="caption">
+                                                    <p>Gráfica 7: K2O (Potasio)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <a class="res-csv" href="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=0" target="_blank">Descargar archivo de resultados</a>
+                                        </div>
                                     </div>
                                 </div>
                             </section>
                             <!-- Página 4 -->
                             <h3>Reporte de Resultados - Suelo</h3>
                             <section>
-                                <!-- div class="form-group">
-                                    <div class="row rowOutput">
-                                        <div id="resultOutput" class="resultOutput col-md-12"></div>
-                                    </div>
-                                </div -->
-                                <div class="row">
-                                    <div class="col-md-6" style="text-align: justify;font-size: small">                                             
-                                        <center><img src="images/2017-03-30_BSS1_PlantaET2.png" width="400px" alt=""/></center>
-                                    </div>
-                                    <div class="col-md-6" style="text-align: justify;font-size: small"> 
-                                        <center>
-                                            <img src="images/2017-03-30_BSS1_PlantaFrutos2.png" width="400px" alt=""/>
-                                        </center>
-                                    </div>
+                                <div id="waitResultSoil">
+                                    <h2>Ejecutando Script..</h2>
+                                    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
                                 </div>
-                                <hr/>
-                                <div class="row">
-                                    <div class="col-md-6" style="text-align: justify;font-size: small"> 
-                                        <center><img src="images/2017-03-30_BSS1_PlantaLAI2.png" width="400px" alt=""/></center>
+                                <div id="resultSoil" class="oculto">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="thumbnail">
+                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=SOIL_&amp;ASSET=1"/>
+                                                <div class="caption">
+                                                    <p>Gráfica 1: Agua</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="thumbnail">
+                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=SOIL_&amp;ASSET=2"/>
+                                                <div class="caption">
+                                                    <p>Gráfica 2: Nitrógeno</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6" style="text-align: justify;font-size: small">
-                                        <center><img src="images/2017-03-30_BSS1_PlantaOrganos2.png" width="400px" alt=""/></center>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="thumbnail">
+                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=SOIL_&amp;ASSET=3"/>
+                                                <div class="caption">
+                                                    <p>Gráfica 3: P2O5 (Fósforo)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="thumbnail">
+                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=SOIL_&amp;ASSET=4"/>
+                                                <div class="caption">
+                                                    <p>Gráfica 4: K2O (Potasio)</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <hr/>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <a href="results/valoresparametros.csv" target="_blank">Descargar archivo de resultados</a>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <a class="res-csv" href="mediaServlet?SIMUL_R=simulationId&amp;TAB=SOIL_&amp;ASSET=0" target="_blank">Descargar archivo de resultados</a>
+                                        </div>
                                     </div>
                                 </div>
                             </section>
-
                         </h:form>
                     </div>
                 </div>
