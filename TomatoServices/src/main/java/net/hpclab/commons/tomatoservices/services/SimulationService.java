@@ -20,6 +20,7 @@ public class SimulationService extends Thread implements Serializable {
 
     @Override
     public void run() {
+        System.out.println("Vamos a simular...");
         String command = "ping www.google.com";
         eventBus.publish(Util.Constant.CHANNEL, "CMD: " + command);
         try {
@@ -28,12 +29,14 @@ public class SimulationService extends Thread implements Serializable {
             try (BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()))) {
                 String line;
                 while ((line = br.readLine()) != null) {
+                    System.out.println(line);
                     eventBus.publish(Util.Constant.CHANNEL, line);
                 }
                 proc.waitFor();
             }
         } catch (Exception e) {
             eventBus.publish(Util.Constant.CHANNEL, "Error: " + e.getMessage());
+            System.out.println("Error -> " + e.getMessage());
         }
     }
 }

@@ -1,4 +1,4 @@
-var SIMUL_STEP =3;
+var SIMUL_STEP = 2;
 var form = $("#simulForm").show();
 var map;
 
@@ -30,11 +30,15 @@ form.steps({
     },
     onStepChanged: function (event, currentIndex, priorIndex) {
         $(".actions a:eq(1)").text("Siguiente");
-        if (currentIndex === SIMUL_STEP) {
+        if (currentIndex === SIMUL_STEP - 1) {
+            // initialize();
+            setCenter(4.583333, -74.066667);
+            //alert("Pasamos por aquí");
+        }
+        else if (currentIndex === SIMUL_STEP) {
             $(".actions a:eq(1)").text("Simular");
         }
-
-        if (currentIndex === (SIMUL_STEP + 1)) {
+        else if (currentIndex === (SIMUL_STEP + 1)) {
             $('#resultOutput').empty();
             launchSimulation();
         } else if (currentIndex === SIMUL_STEP) {
@@ -61,7 +65,7 @@ form.steps({
 
 function handleMessage(message) {
     console.log(message);
-    $('#resultOutput').append($('<p>' + message + '</p>'));
+    //$('#resultOutput').append($('<p>' + message + '</p>'));
 }
 
 function setFecha() {

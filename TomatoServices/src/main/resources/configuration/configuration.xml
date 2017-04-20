@@ -1,63 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration>
+    <pathNix>/usr/local/fertitom</pathNix>
+    <pathWin>C:\Fertitom</pathWin>
+    <pathInput>input</pathInput>
+    <pathOutput>output</pathOutput>
+    <fileParam>params.csv</fileParam>
     <location>
         <id>1</id>
-        <name>Santa Sofía I</name>
-        <latitude>123</latitude>
-        <longitude>123</longitude>
-        <altitude>2347</altitude>
-        <department>Boyacá</department>
-        <municipality>Santa Sofía</municipality>
-        <type>1</type>
-        <trgh>1</trgh>
         <fileweather>BSS1_clima.csv</fileweather>
         <filesoil>BSS1_clima.csv</filesoil>
         <fileirrigation>BSS1_riego.csv</fileirrigation>
-        <filelocation>BSS1_ubic.csv</filelocation>
+        <fileubic>BSS1_ubic.csv</fileubic>
     </location>
     <location>
         <id>2</id>
-        <name>Santa Sofía II</name>
-        <latitude>123</latitude>
-        <longitude>123</longitude>
-        <altitude></altitude>
-        <department></department>
-        <municipality></municipality>
-        <type>1</type>
-        <trgh>1</trgh>
         <fileweather>BSS2_clima.csv</fileweather>
-        <filesoil>BSS1_clima.csv</filesoil>
-        <fileirrigation>BSS1_riego.csv</fileirrigation>
-        <filelocation>BSS1_ubic.csv</filelocation>
+        <filesoil>BSS2_clima.csv</filesoil>
+        <fileirrigation>BSS2_riego.csv</fileirrigation>
+        <fileubic>BSS2_ubic.csv</fileubic>
     </location>
     <location>
         <id>3</id>
-        <name>Páramo</name>
-        <latitude>123</latitude>
-        <longitude>123</longitude>
-        <altitude></altitude>
-        <department></department>
-        <municipality></municipality>
-        <type></type>
-        <trgh></trgh>
-        <fileweather>BSS1_clima.csv</fileweather>
-        <filesoil>BSS1_clima.csv</filesoil>
-        <fileirrigation>BSS1_riego.csv</fileirrigation>
-        <filelocation>BSS1_ubic.csv</filelocation>
+        <fileweather>SP1_clima.csv</fileweather>
+        <filesoil>SP1_clima.csv</filesoil>
+        <fileirrigation>SP1_riego.csv</fileirrigation>
+        <fileubic>SP1_ubic.csv</fileubic>
     </location>
     <location>
         <id>4</id>
-        <name>San Gil</name>
-        <latitude>123</latitude>
-        <longitude>123</longitude>
-        <altitude></altitude>
-        <department></department>
-        <municipality></municipality>
-        <type></type>
-        <trgh></trgh>
-        <fileweather>BSS1_clima.csv</fileweather>
-        <filesoil>BSS1_clima.csv</filesoil>
-        <fileirrigation>BSS1_riego.csv</fileirrigation>
-        <filelocation>BSS1_ubic.csv</filelocation>
+        <fileweather>SSG1_clima.csv</fileweather>
+        <filesoil>SSG1_clima.csv</filesoil>
+        <fileirrigation>SSG1_riego.csv</fileirrigation>
+        <fileubic>SSG1_ubic.csv</fileubic>
     </location>
 </configuration>

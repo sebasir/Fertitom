@@ -1,5 +1,6 @@
 package net.hpclab.commons.tomatoservices.services;
 
+import java.io.File;
 import java.io.InputStream;
 import java.io.Serializable;
 import javax.servlet.ServletContextEvent;
@@ -24,9 +25,20 @@ public class ApplicationStartup implements ServletContextListener, Serializable 
             if (is != null) {
                 Configuration config = (Configuration) jaxbUnmarshaller.unmarshal(is);
                 Util.locations = config.getLocation();
+                Util.pathNix = config.getPathNix();
+                Util.pathWin = config.getPathWin();
+                Util.fileParam = config.getFileParam();
+                Util.pathFiles = Util.isWindows()? Util.pathWin: Util.pathNix;
+                Util.pathInput = Util.pathFiles + File.separator + config.getPathInput();
+                Util.pathOutput = Util.pathFiles + File.separator + config.getPathOutput();
             }
-            System.out.println("Ubicaciones -> " + Util.locations);
-            FileLoadService fls = new FileLoadService(Util.locations, sce.getServletContext());
+            
+            System.out.println("Ubicaciones = " + Util.locations);
+            System.out.println("PathFiles = " + Util.pathFiles + " (r = " + Util.isReadable(Util.pathFiles) + ", w = " + Util.isWritable(Util.pathFiles) + ")");
+            System.out.println("PathInput = " + Util.pathInput + " (r = " + Util.isReadable(Util.pathInput) + ", w = " + Util.isWritable(Util.pathInput) + ")");
+            System.out.println("PathOutput = " + Util.pathOutput + " (r = " + Util.isReadable(Util.pathOutput) + ", w = " + Util.isWritable(Util.pathOutput) + ")");
+            
+            FileLoadService fls = new FileLoadService(Util.locations);
             fls.loadFiles();
         } catch (Exception e) {
             e.printStackTrace();

@@ -9,12 +9,7 @@ public class Simulation implements Serializable {
     private Location location;
     private String initDate;
     private String finalDate;
-    private Double trgh;
     private Double plm2;
-    private Double dmLeaf;
-    private Double totLeafArea;
-    private Double dmStem;
-    private Double dmFruit;
     private Double recNitrogen;
     private Double recPhosphorus;
     private Double recPotasium;
@@ -45,14 +40,6 @@ public class Simulation implements Serializable {
         this.finalDate = finalDate;
     }
 
-    public Double getTrgh() {
-        return trgh;
-    }
-
-    public void setTrgh(Double trgh) {
-        this.trgh = trgh;
-    }
-
     public Double getPlm2() {
         return plm2;
     }
@@ -60,39 +47,7 @@ public class Simulation implements Serializable {
     public void setPlm2(Double plm2) {
         this.plm2 = plm2;
     }
-
-    public Double getDmLeaf() {
-        return dmLeaf;
-    }
-
-    public void setDmLeaf(Double dmLeaf) {
-        this.dmLeaf = dmLeaf;
-    }
-
-    public Double getTotLeafArea() {
-        return totLeafArea;
-    }
-
-    public void setTotLeafArea(Double totLeafArea) {
-        this.totLeafArea = totLeafArea;
-    }
-
-    public Double getDmStem() {
-        return dmStem;
-    }
-
-    public void setDmStem(Double dmStem) {
-        this.dmStem = dmStem;
-    }
-
-    public Double getDmFruit() {
-        return dmFruit;
-    }
-
-    public void setDmFruit(Double dmFruit) {
-        this.dmFruit = dmFruit;
-    }
-
+    
     public Double getRecNitrogen() {
         return recNitrogen;
     }
