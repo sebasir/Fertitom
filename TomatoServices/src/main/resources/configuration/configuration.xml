@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration>
-    <pathNixInput>/usr/local/fertitom/</pathNixInput>
+    <pathNixInput>/usr/local/fertitom</pathNixInput>
     <pathWinInput>C:\Fertitom</pathWinInput>
-    <pathNixOutput>/usr/local/fertitom/</pathNixOutput>
+    <pathNixOutput>/usr/local/fertitom</pathNixOutput>
     <pathWinOutput>C:\Fertitom</pathWinOutput>
     <pathInput>input</pathInput>
     <pathOutput>output</pathOutput>

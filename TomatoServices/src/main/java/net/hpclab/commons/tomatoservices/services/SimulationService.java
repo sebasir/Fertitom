@@ -26,7 +26,8 @@ public class SimulationService extends Thread implements Serializable {
             Util.createSimulationFolder(resultSimulation);
             String command = Util.Constant.R_COMMAND + Util.Constant.SPACE + simulation.getLocation().getPrefix() + Util.Constant.SPACE + simulation.getPlm2();
             System.out.println("CMD: " + command);
-            command = "ping echo";
+            //command = "ping echo";
+            command = "Rscript /usr/local/fertitom/script.R SSG1 2.0";
             eventBus.publish(Util.Constant.CHANNEL, "CMD: " + command);
             Runtime rt = Runtime.getRuntime();
             Process proc = rt.exec(command);
