@@ -42,6 +42,7 @@ public class MediaServlet extends HttpServlet {
             fileName += ("0".equals(assetId) ? ".csv" : ".png");
             archivo = new File(fileName);
             mime = cntx.getMimeType(fileName);
+            System.out.println(fileName);
         }
 
         if ((!simulationId.isEmpty() && !assetId.isEmpty()) && !assetId.isEmpty() && archivo != null) {
@@ -56,6 +57,10 @@ public class MediaServlet extends HttpServlet {
                     }
                 }
             }
+            System.out.println("No pudo leer el archivo"+archivo.getName());
+        }
+        else{
+            System.out.println("Algo salió mal en el servlet");
         }
     }
 

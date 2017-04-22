@@ -98,12 +98,28 @@
                                             </div>
                                             <div class="row">
                                                 <div class="form-group">
-                                                    <label class="col-md-5 control-label" for="locWeather">Transmisión del Plástico:</label>
+                                                    <label class="col-md-5 control-label" for="locWeather">Altitud:</label>
                                                     <div class="col-md-7">
-                                                        #{simulacionBean.simulation.location.trgh}
+                                                        #{simulacionBean.simulation.location.altitude} metros
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-md-5 control-label" for="locWeather">Latitud:</label>
+                                                    <div class="col-md-7">
+                                                        #{simulacionBean.simulation.location.latitude} grados
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-md-5 control-label" for="locWeather">Longitud:</label>
+                                                    <div class="col-md-7">
+                                                        #{simulacionBean.simulation.location.longitude} grados
+                                                    </div>
+                                                </div>
+                                            </div>                                               
                                         </h:panelGroup>
                                     </div>
                                 </div>
@@ -170,19 +186,10 @@
                                                         <div class="col-md-2">
                                                             <p>#{params.maximumVal}</p>
                                                         </div>
-                                                        <p class="col-md-2">[kg/m2]</p>
+                                                        <p class="col-md-2">[kg/ha]</p>
                                                     </div>
                                                 </div>
                                             </ui:repeat>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label class="col-md-6 control-label">Aportación de agua:</label>
-                                                    <div class="col-md-2">
-                                                        <h:inputText value="#{simulacionBean.simulation.recWater}" readonly="false" styleClass="form-control input-block-level"/>
-                                                    </div>
-                                                    <p class="col-md-2">[lt/m2/día]</p>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </h:panelGroup>
@@ -196,73 +203,42 @@
                                 </div>
                                 <div id="resultPlant" class="oculto">
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="thumbnail">
                                                 <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=1"/>
-                                                <div class="caption">
-                                                    <p>Gráfica 1: Materia Seca Total</p>
-                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="thumbnail">
                                                 <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=2"/>
-                                                <div class="caption">
-                                                    <p>Gráfica 2: Frutos</p>
-                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-6">
                                             <div class="thumbnail">
                                                 <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=3"/>
-                                                <div class="caption">
-                                                    <p>Gráfica 3: Evapotranspiración</p>
-                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <hr/>
-                                    <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="thumbnail">
                                                 <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=4"/>
-                                                <div class="caption">
-                                                    <p>Gráfica 4: Área foliar</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="thumbnail">
-                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=5"/>
-                                                <div class="caption">
-                                                    <p>Gráfica 5: Nitrógeno</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="thumbnail">
-                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=6"/>
-                                                <div class="caption">
-                                                    <p>Gráfica 6: P2O5 (Fósforo)</p>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <hr/>
                                     <div class="row">
-                                        <div class="col-md-4 col-md-offset-4">
+                                        <div class="col-md-6" style="text-align:center;">
                                             <div class="thumbnail">
-                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=7"/>
-                                                <div class="caption">
-                                                    <p>Gráfica 7: K2O (Potasio)</p>
-                                                </div>
+                                                <img class="res-img" src="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=5"/>
                                             </div>
                                         </div>
                                     </div>
                                     <hr/>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <a class="res-csv" href="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=0" target="_blank">Descargar archivo de resultados</a>
+                                            <a class="res-csv" href="mediaServlet?SIMUL_R=simulationId&amp;TAB=PLANT_&amp;ASSET=0" download="plant.csv">Descargar archivo de resultados</a>
                                         </div>
                                     </div>
                                 </div>
@@ -315,7 +291,7 @@
                                     <hr/>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <a class="res-csv" href="mediaServlet?SIMUL_R=simulationId&amp;TAB=SOIL_&amp;ASSET=0" target="_blank">Descargar archivo de resultados</a>
+                                            <a class="res-csv" href="mediaServlet?SIMUL_R=simulationId&amp;TAB=SOIL_&amp;ASSET=0" download="soil.csv">Descargar archivo de resultados</a>
                                         </div>
                                     </div>
                                 </div>
@@ -328,8 +304,14 @@
         </div>
         <nav class="navbar" role="navigation">
             <div class="container" style="text-align: center;">
-                <div class="col-md-12">
-                    <h4>Universidad Jorge Tadeo Lozano - Colciencias - Universidad Central</h4>
+                <div class="col-md-2">
+                    <h4><a href="http://www.utadeo.edu.co/" target="_blank"><img src="images/logo_utadeo.jpg" class="img-responsive"/></a></h4>
+                </div>
+                <div class="col-md-1">
+                    <h4><a href="http://www.colciencias.gov.co/" target="_blank"><img src="images/logo_colciencias.jpg" class="img-responsive"/></a></h4>
+                </div>
+                <div class="col-md-2">
+                    <h4><a href="http://www.ucentral.edu.co/" target="_blank"><img src="images/logo_ucentral.jpg" class="img-responsive"/></a></h4>
                 </div>
             </div>
         </nav>

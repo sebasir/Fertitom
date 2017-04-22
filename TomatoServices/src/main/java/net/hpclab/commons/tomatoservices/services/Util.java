@@ -30,7 +30,8 @@ public class Util implements Serializable {
         public static final String CHANNEL = "/results";
         public static final String CONFIG_FILE = "/WEB-INF/classes/configuration/configuration.xml";
         public static final String R_COMMAND = "Rscript";
-        public static final String SCRIPT = "/usr/local/fertitom/script.R";
+//        public static final String SCRIPT = "/usr/local/fertitom/script.R";
+        public static final String SCRIPT = "/usr/local/fertitom/TomatoSSD.R";
         public static final String SIMUL_R = "SIMUL_R";
         public static final String SPACE = " ";
         public static final String SOIL_RESULT_FILE = "SOIL_";
@@ -42,6 +43,8 @@ public class Util implements Serializable {
     }
 
     public static boolean isWindows() {
+        String username = System.getProperty("user.name");
+        System.out.println("username = " + username);
         return OS.contains("win");
     }
 
