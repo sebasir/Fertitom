@@ -21,10 +21,13 @@ public class SimulationService extends Thread implements Serializable {
     @Override
     public void run() {
         try {
-            simulation.setId(Util.Constant.SIMUL_R + "_0123456789"); // System.currentTimeMillis();
+            //simulation.setId(Util.Constant.SIMUL_R + "_0123456789"); // System.currentTimeMillis();
+            simulation.setId(Util.Constant.SIMUL_R + System.currentTimeMillis()); // System.currentTimeMillis();
+
             final String resultSimulation = Util.pathOutput + File.separator + simulation.getId();
-            Util.createSimulationFolder(resultSimulation);
-            String command = Util.Constant.R_COMMAND + Util.Constant.SPACE + Util.Constant.SCRIPT +Util.Constant.SPACE +simulation.getLocation().getPrefix() + Util.Constant.SPACE + simulation.getPlm2();
+            //Util.createSimulationFolder(resultSimulation);
+            String command = Util.Constant.R_COMMAND + Util.Constant.SPACE + Util.Constant.SCRIPT +Util.Constant.SPACE +
+                    simulation.getLocation().getPrefix() + Util.Constant.SPACE + simulation.getPlm2()+Util.Constant.SPACE +simulation.getId();
             System.out.println("CMD: " + command);
             //command = "ping echo";
             //command = "Rscript /usr/local/fertitom/script.R SSG1 2.0";
