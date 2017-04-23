@@ -131,7 +131,7 @@
                                     <h3 align="center">Periodo</h3>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 col-md-offset-3 control-label" for="fechaIni">Fecha Inicial:</label>
+                                    <label class="col-md-3 col-md-offset-3 control-label" for="fechaIni">Fecha inicial:</label>
                                     <div class="col-md-3">
                                         <h:inputText id="fechaIni" styleClass="fecha form-control input-block-level required" value="#{simulacionBean.simulation.location.initDate}">
                                             <p:ajax process="@this"/>
@@ -139,7 +139,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 col-md-offset-3 control-label" for="fichaFin">Fecha Final:</label>
+                                    <label class="col-md-3 col-md-offset-3 control-label" for="fichaFin">Fecha final:</label>
                                     <div class="col-md-3">
                                         <h:inputText id="fechaFin" styleClass="fecha form-control input-block-level required" value="#{simulacionBean.simulation.location.finalDate}">
                                             <p:ajax process="@this" listener="#{simulacionBean.calcDays()}" update="growl"/>
