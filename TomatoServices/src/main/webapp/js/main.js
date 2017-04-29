@@ -32,7 +32,7 @@ form.steps({
         $(".actions a:eq(1)").text("Siguiente");
         if (currentIndex === SIMUL_STEP - 1) {
             // initialize();
-            setCenter(4.583333, -74.066667);
+            setMapCenter(4.583333, -74.066667, 'Colombia');
             //alert("Pasamos por aquí");
         }
         else if (currentIndex === SIMUL_STEP) {
@@ -112,11 +112,26 @@ function initialize() {
     map = new google.maps.Map(mapCanvas, mapOptions);
 }
 
-function setCenter(paramLat, paramLon) {
-    var mapCanvas = document.getElementById('map');
-    var mapOptions = {
-        center: {lat: paramLat, lng: paramLon},
-        zoom: 5
-    };
-    map = new google.maps.Map(mapCanvas, mapOptions);
+function setMapCenter(paramLat, paramLon,paramName) {
+        console.log(paramLat, paramLon);
+    if (isNumeric(paramLat)&& isNumeric(paramLon))
+    {
+        var latitude=parseFloat(paramLat), longitude=parseFloat(paramLon);
+        var mapCanvas = document.getElementById('map');
+        var mapOptions = {
+            center: {lat: latitude, lng: longitude},
+            zoom: 9
+        };
+        var marker = new google.maps.Marker({
+            position: {lat: latitude, lng:longitude},
+            title: paramName
+        });
+        map = new google.maps.Map(mapCanvas, mapOptions);
+        marker.setMap(map);
+    }
+}
+
+function isNumeric(n) 
+{
+  return !isNaN(parseFloat(n)) && isFinite(n);
 }

@@ -79,7 +79,7 @@
                                                     <h:selectOneMenu id="locWeather" styleClass="form-control input-block-level required" value="#{simulacionBean.simulation.location}" converter="#{locationConverter}">
                                                         <f:selectItem itemValue="#{null}" itemLabel="Selecciona..." />
                                                         <f:selectItems value="#{simulacionBean.locations}" var="loc" itemLabel="#{loc.municipality}"/>
-                                                        <p:ajax event="change" update="@this, location, fechaIni, fechaFin" oncomplete=""/>
+                                                        <p:ajax event="change" update="@this, location, fechaIni, fechaFin" oncomplete="setMapCenter('#{simulacionBean.simulation.location.latitude}','#{simulacionBean.simulation.location.longitude}','#{simulacionBean.simulation.location.municipality}')"/>
                                                     </h:selectOneMenu>
                                                 </div>
                                             </div>
@@ -174,7 +174,7 @@
                                             <ui:repeat value="#{simulacionBean.parameters}" var="params">
                                                 <div class="row">
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">#{params.param}:</label>
+                                                        <label class="col-md-4 control-label">#{params.param.label}:</label>
                                                         <div class="col-md-2">
                                                             <p>#{params.minimumVal}</p>
                                                         </div>

@@ -36,6 +36,7 @@ public class FileLoadService implements Serializable {
         reader = new BufferedReader(new InputStreamReader(in));
         Util.parameters = new ArrayList<>();
         Property property;
+        Params param=Params.NITROGEN;
         while ((line = reader.readLine()) != null) {
             i++;
             if (i == 1) {
@@ -44,9 +45,19 @@ public class FileLoadService implements Serializable {
             if (!line.contains(Util.Constant.VALUE_SEPARATOR)) {
                 continue;
             }
+            switch(i)
+            {
+                case 2: param=Params.NITROGEN;
+                    break;
+                case 3: param=Params.P2O5;
+                    break;
+                case 4: param=Params.K2O;
+                    break;
+            }
+            
             property = new Property();
             commaLine = line.split(Util.Constant.VALUE_SEPARATOR);
-            property.setParam(Params.valueOf(commaLine[0]));
+            property.setParam(param);
             property.setUnity(commaLine[1]);
             property.setDefaultVal(Double.parseDouble(commaLine[2]));
             property.setMinimumVal(Double.parseDouble(commaLine[3]));

@@ -81,10 +81,6 @@ public class simulacionBean implements Serializable {
             case K2O:
                 simulation.setRecPotasium(value);
                 break;
-            case OPEN_FIELD:
-                break;
-            case GREEN_HOUSE:
-                break;
         }
         showMessage("Cambio de Valor", "El valor nuevo es " + value, FacesMessage.SEVERITY_INFO);
     }
