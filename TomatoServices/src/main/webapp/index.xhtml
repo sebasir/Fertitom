@@ -51,13 +51,24 @@
                             <h3>Bienvenido a Fertitom</h3>
                             <section style="width:100%">
                                 <div class="row">
-                                    <div class="col-md-6" style="text-align: justify;font-size: small"> <strong>FERTITOM</strong> es una herramienta de asistencia técnica que estima el rendimiento del cultivo de tomate, a campo abierto o bajo invernadero, en función de las condiciones de clima y el esquema de fertilización (NPK) definido por el usuario.                                    </div>
-
-                                    <div class="col-md-6" style="text-align: justify;font-size: small"> El uso de <strong>FERTITOM</strong> es gratuito y los resultados de las simulaciones son una guía indicativa del comportamiento genérico del cultivo de tomate y no considera las particularidades de cada ciclo de cultivo o el manejo aplicado por cada agricultor.                                    </div>
-                                </div>
-                                <hr/>
-                                <div class="row">
-                                    <div class="col-md-6" style="text-align: justify;font-size: small"> <strong>FERTITOM</strong> es el resultado de un proyecto de investigación cofinanciado por Colciencias y desarrollado de manera colaborativa entre la Universidad Jorge Tadeo Lozano y la Universidad Central. <strong>FERTITOM</strong> se desarrolló para las condiciones de producción colombianas, considerando las prácticas promedio de los agricultores tanto a campo abierto como bajo invernadero.                         </div> 
+                                    <div class="col-md-6" style="text-align: justify;font-size: small"> 
+                                        <div class="row">
+                                            <div class="col-md-12" style="text-align: justify;font-size: small"> <strong>FERTITOM</strong> es una herramienta de asistencia técnica que 
+                                            estima el rendimiento del cultivo de tomate, a campo abierto o bajo invernadero, en función de las condiciones de clima y el esquema 
+                                            de fertilización (NPK) definido por el usuario.</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12" style="text-align: justify;font-size: small"> El uso de <strong>FERTITOM</strong> es gratuito. Los resultados 
+                                            de las simulaciones son una guía indicativa del comportamiento genérico del cultivo de tomate y no considera las particularidades 
+                                            de cada ciclo de cultivo o el manejo aplicado por cada agricultor. </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12" style="text-align: justify;font-size: small"> <strong>FERTITOM</strong> es el resultado de un proyecto de investigación 
+                                         cofinanciado por Colciencias y desarrollado en colaboración por la Universidad Jorge Tadeo Lozano y la Universidad 
+                                         Central, para las condiciones de producción colombianas, según las prácticas promedio de 
+                                        los agricultores tanto a campo abierto como bajo invernadero.</div> 
+                                        </div>
+                                    </div>
                                     <div class="col-md-6" style="text-align: justify;font-size: small">
                                         <center><img src="images/tomate1.jpg" class="img-responsive"/></center>
                                     </div>
@@ -79,7 +90,7 @@
                                                     <h:selectOneMenu id="locWeather" styleClass="form-control input-block-level required" value="#{simulacionBean.simulation.location}" converter="#{locationConverter}">
                                                         <f:selectItem itemValue="#{null}" itemLabel="Selecciona..." />
                                                         <f:selectItems value="#{simulacionBean.locations}" var="loc" itemLabel="#{loc.municipality}"/>
-                                                        <p:ajax event="change" update="@this, location, fechaIni, fechaFin" oncomplete="setMapCenter('#{simulacionBean.simulation.location.latitude}','#{simulacionBean.simulation.location.longitude}','#{simulacionBean.simulation.location.municipality}')"/>
+                                                        <p:ajax event="change" update="@this, location, fechaIni, fechaFin" oncomplete="setMapCenter('#{simulacionBean.simulation.location.latitude}','#{simulacionBean.simulation.location.longitude}','#{simulacionBean.simulation.location.municipality}',9)"/>
                                                     </h:selectOneMenu>
                                                 </div>
                                             </div>
@@ -152,7 +163,7 @@
                                 <h:panelGroup id="summary" layout="block">
                                     <div class="row">
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label" for="plm2">PLM2 - Densidad de plantación</label>
+                                            <label class="col-md-4 control-label" for="plm2">Densidad de plantación</label>
                                             <div class="col-md-4">
                                                 <p:inputText id="plm2" class="form-control input-block-level required" value="#{simulacionBean.simulation.plm2}">
                                                     <p:ajax process="@this"/>
