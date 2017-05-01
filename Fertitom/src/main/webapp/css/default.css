@@ -182,3 +182,7 @@ body {
     font-family: 'Consolas', monospace;
     line-height: 0.5em;
 }
+
+.errorMessage {
+    color: red;
+}

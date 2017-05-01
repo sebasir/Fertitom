@@ -55,7 +55,7 @@ form.steps({
     },
     onFinished: function (event, currentIndex) {
         restart();
-        form[0].submit();
+        location.reload();
     },
     onCanceled: function (event) {
         restart();
@@ -84,8 +84,14 @@ function handleMessage(message) {
         $('#resultSoil').toggleClass('oculto');
     } else if (message.status === 'error') {
         $('.resultTitle').each(function () {
-            $(this).find('h4').each(function() {
+            $(this).find('h2').each(function() {
                 $(this).html(message.message);
+            });
+            $(this).find('span').each(function() {
+                $(this).removeClass('glyphicon-refresh');
+                $(this).removeClass('glyphicon-refresh glyphicon-refresh-animate');
+                $(this).addClass('glyphicon-remove');
+                $(this).addClass('errorMessage');
             });
         });
     } else if (message.status === 'centerMap') {
