@@ -1,4 +1,4 @@
-package net.hpclab.commons.tomatoservices.model;
+package net.hpclab.ucentral.fertitom.model;
 
 public enum Params {
     NITROGEN("Nitrógeno"), P2O5("Fósforo (P2O5)"), K2O("Potasio (K2O)");

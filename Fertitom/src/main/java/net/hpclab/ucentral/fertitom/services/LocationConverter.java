@@ -1,11 +1,11 @@
-package net.hpclab.commons.tomatoservices.services;
+package net.hpclab.ucentral.fertitom.services;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import net.hpclab.commons.tomatoservices.model.Location;
+import net.hpclab.ucentral.fertitom.model.Location;
 
 @ManagedBean
 @ApplicationScoped

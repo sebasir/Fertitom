@@ -1,4 +1,4 @@
-package net.hpclab.commons.tomatoservices.beans;
+package net.hpclab.ucentral.fertitom.beans;
 
 import java.io.Serializable;
 import org.primefaces.push.annotation.OnMessage;

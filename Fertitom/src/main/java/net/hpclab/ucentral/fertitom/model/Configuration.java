@@ -1,4 +1,4 @@
-package net.hpclab.commons.tomatoservices.model;
+package net.hpclab.ucentral.fertitom.model;
 
 import java.io.Serializable;
 import java.util.List;

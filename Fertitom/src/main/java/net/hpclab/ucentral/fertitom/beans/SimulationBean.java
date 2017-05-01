@@ -1,4 +1,4 @@
-package net.hpclab.commons.tomatoservices.beans;
+package net.hpclab.ucentral.fertitom.beans;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -9,18 +9,19 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import net.hpclab.commons.tomatoservices.model.Location;
-import net.hpclab.commons.tomatoservices.model.Params;
-import net.hpclab.commons.tomatoservices.model.Property;
-import net.hpclab.commons.tomatoservices.model.Simulation;
-import net.hpclab.commons.tomatoservices.services.SimulationService;
-import net.hpclab.commons.tomatoservices.services.Util;
+import net.hpclab.ucentral.fertitom.model.Location;
+import net.hpclab.ucentral.fertitom.model.Params;
+import net.hpclab.ucentral.fertitom.model.Property;
+import net.hpclab.ucentral.fertitom.model.Simulation;
+import net.hpclab.ucentral.fertitom.services.SimulationService;
+import net.hpclab.ucentral.fertitom.services.Util;
+import org.primefaces.json.JSONObject;
 import org.primefaces.push.EventBus;
 import org.primefaces.push.EventBusFactory;
 
 @Named
 @SessionScoped
-public class simulacionBean implements Serializable {
+public class SimulationBean implements Serializable {
 
     public static final long serialVersionUID = 1L;
     private List<Location> locations;
@@ -29,7 +30,7 @@ public class simulacionBean implements Serializable {
     private long simDays;
     private final EventBus eventBus = EventBusFactory.getDefault().eventBus();
 
-    public simulacionBean() {
+    public SimulationBean() {
     }
 
     @PostConstruct
@@ -41,6 +42,18 @@ public class simulacionBean implements Serializable {
 
     public void showMessage(String title, String message, FacesMessage.Severity severity) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, title, message));
+    }
+
+    public void setMapCenter() {
+        JSONObject json = new JSONObject();
+        json.put("latitude", simulation.getLocation().getLatitude());
+        json.put("longitude", simulation.getLocation().getLongitude());
+        json.put("nombre", simulation.getLocation().getMunicipality());
+        json.put("zoom", 9);
+        JSONObject jsonCommand = new JSONObject();
+        jsonCommand.put("status", "centerMap");
+        jsonCommand.put("centerMap", json);
+        eventBus.publish(Util.Constant.CHANNEL, jsonCommand);
     }
 
     public void calcDays() {
@@ -61,9 +74,14 @@ public class simulacionBean implements Serializable {
 
     public void launchSimulation() {
         try {
-            SimulationService service = new SimulationService(simulation, eventBus);
-            service.start();
-            showMessage("Simulando", "", FacesMessage.SEVERITY_INFO);
+            if (!simulation.isSimulated()) {
+                SimulationService service = new SimulationService(simulation, eventBus);
+                service.start();
+                showMessage("Simulando", "", FacesMessage.SEVERITY_INFO);
+                simulation.setSimulated(true);
+            } else {
+                showMessage("Ya se había ejecutado la simulación!", "", FacesMessage.SEVERITY_WARN);
+            }
         } catch (Exception e) {
             showMessage("Error simulando.", "Hubo un error simulando: " + e.getMessage(), FacesMessage.SEVERITY_ERROR);
         }
@@ -72,7 +90,7 @@ public class simulacionBean implements Serializable {
     public void calcRecommendation(Params param, double value) {
         switch (param) {
             case NITROGEN:
-                
+
                 simulation.setRecNitrogen(value);
                 break;
             case P2O5:
@@ -105,7 +123,7 @@ public class simulacionBean implements Serializable {
     public void setParameters(List<Property> parameters) {
         this.parameters = parameters;
     }
-    
+
     public Simulation getSimulation() {
         return simulation;
     }
@@ -113,5 +131,4 @@ public class simulacionBean implements Serializable {
     public void setSimulation(Simulation simulation) {
         this.simulation = simulation;
     }
-
 }

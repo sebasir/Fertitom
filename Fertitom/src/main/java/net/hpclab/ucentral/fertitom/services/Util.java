@@ -1,10 +1,10 @@
-package net.hpclab.commons.tomatoservices.services;
+package net.hpclab.ucentral.fertitom.services;
 
 import java.io.File;
 import java.io.Serializable;
 import java.util.List;
-import net.hpclab.commons.tomatoservices.model.Location;
-import net.hpclab.commons.tomatoservices.model.Property;
+import net.hpclab.ucentral.fertitom.model.Location;
+import net.hpclab.ucentral.fertitom.model.Property;
 
 public class Util implements Serializable {
 

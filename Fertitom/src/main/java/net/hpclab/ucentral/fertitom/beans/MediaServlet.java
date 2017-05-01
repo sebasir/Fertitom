@@ -1,4 +1,4 @@
-package net.hpclab.commons.tomatoservices.beans;
+package net.hpclab.ucentral.fertitom.beans;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,7 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import net.hpclab.commons.tomatoservices.services.Util;
+import net.hpclab.ucentral.fertitom.services.Util;
 
 @WebServlet(name = "mediaServlet", urlPatterns = "/mediaServlet")
 public class MediaServlet extends HttpServlet {

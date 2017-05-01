@@ -41,8 +41,8 @@
                     <div class="row">
                         <p:socket onMessage="handleMessage" channel="/results" />
                         <h:form id="simulForm" enctype="multipart/form-data">
-                            <p:remoteCommand name="launchSimulation" actionListener="#{simulacionBean.launchSimulation()}" update="growl"/>
-                            <p:remoteCommand name="restart" actionListener="#{simulacionBean.restart()}" update="simulForm"/>
+                            <p:remoteCommand name="launchSimulation" actionListener="#{simulationBean.launchSimulation()}" update="growl"/>
+                            <p:remoteCommand name="restart" actionListener="#{simulationBean.restart()}" update="simulForm"/>
                             <p:growl id="growl" showDetail="true"/>
                             <!-- Página 0 -->
                             <h3>Bienvenido a Fertitom</h3>
@@ -84,10 +84,10 @@
                                             <div class="form-group">
                                                 <label class="col-md-5 control-label" for="locWeather">Localización Clima:</label>
                                                 <div class="col-md-7">
-                                                    <h:selectOneMenu id="locWeather" styleClass="form-control input-block-level required" value="#{simulacionBean.simulation.location}" converter="#{locationConverter}">
+                                                    <h:selectOneMenu id="locWeather" styleClass="form-control input-block-level required" value="#{simulationBean.simulation.location}" converter="#{locationConverter}">
                                                         <f:selectItem itemValue="#{null}" itemLabel="Selecciona..." />
-                                                        <f:selectItems value="#{simulacionBean.locations}" var="loc" itemLabel="#{loc.municipality}"/>
-                                                        <p:ajax event="change" update="@this, location, fechaIni, fechaFin" listener="#{simulacionBean.setMapCenter()}"/>
+                                                        <f:selectItems value="#{simulationBean.locations}" var="loc" itemLabel="#{loc.municipality}"/>
+                                                        <p:ajax event="change" update="@this, location, fechaIni, fechaFin" listener="#{simulationBean.setMapCenter()}"/>
                                                     </h:selectOneMenu>
                                                 </div>
                                             </div>
@@ -100,7 +100,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-5 control-label" for="locWeather">Departamento:</label>
                                                     <div class="col-md-7">
-                                                        #{simulacionBean.simulation.location.department} - #{simulacionBean.simulation.location.municipality}
+                                                        #{simulationBean.simulation.location.department} - #{simulationBean.simulation.location.municipality}
                                                     </div>
                                                 </div>
                                             </div>
@@ -108,7 +108,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-5 control-label" for="locWeather">Altitud:</label>
                                                     <div class="col-md-7">
-                                                        #{simulacionBean.simulation.location.altitude} metros
+                                                        #{simulationBean.simulation.location.altitude} metros
                                                     </div>
                                                 </div>
                                             </div>
@@ -116,7 +116,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-5 control-label" for="locWeather">Latitud:</label>
                                                     <div class="col-md-7">
-                                                        #{simulacionBean.simulation.location.latitude} grados
+                                                        #{simulationBean.simulation.location.latitude} grados
                                                     </div>
                                                 </div>
                                             </div> 
@@ -124,7 +124,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-5 control-label" for="locWeather">Longitud:</label>
                                                     <div class="col-md-7">
-                                                        #{simulacionBean.simulation.location.longitude} grados
+                                                        #{simulationBean.simulation.location.longitude} grados
                                                     </div>
                                                 </div>
                                             </div>                                               
@@ -141,7 +141,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 col-md-offset-3 control-label" for="fechaIni">Fecha inicial:</label>
                                     <div class="col-md-3">
-                                        <h:inputText id="fechaIni" styleClass="fecha form-control input-block-level required" value="#{simulacionBean.simulation.location.initDate}">
+                                        <h:inputText id="fechaIni" styleClass="fecha form-control input-block-level required" value="#{simulationBean.simulation.location.initDate}">
                                             <p:ajax process="@this"/>
                                         </h:inputText>
                                     </div>
@@ -149,8 +149,8 @@
                                 <div class="form-group">
                                     <label class="col-md-3 col-md-offset-3 control-label" for="fichaFin">Fecha final:</label>
                                     <div class="col-md-3">
-                                        <h:inputText id="fechaFin" styleClass="fecha form-control input-block-level required" value="#{simulacionBean.simulation.location.finalDate}">
-                                            <p:ajax process="@this" listener="#{simulacionBean.calcDays()}" update="growl"/>
+                                        <h:inputText id="fechaFin" styleClass="fecha form-control input-block-level required" value="#{simulationBean.simulation.location.finalDate}">
+                                            <p:ajax process="@this" listener="#{simulationBean.calcDays()}" update="growl"/>
                                         </h:inputText>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="plm2">Densidad de plantación</label>
                                             <div class="col-md-4">
-                                                <p:inputText id="plm2" class="form-control input-block-level required" value="#{simulacionBean.simulation.plm2}">
+                                                <p:inputText id="plm2" class="form-control input-block-level required" value="#{simulationBean.simulation.plm2}">
                                                     <p:ajax process="@this"/>
                                                 </p:inputText>
                                             </div>
@@ -179,7 +179,7 @@
                                                 </div>
                                             </div>
                                             <hr />
-                                            <ui:repeat value="#{simulacionBean.parameters}" var="params">
+                                            <ui:repeat value="#{simulationBean.parameters}" var="params">
                                                 <div class="row">
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">#{params.param.label}:</label>
@@ -188,7 +188,7 @@
                                                         </div>
                                                         <div class="col-md-2">
                                                             <p:inputText value="#{params.defaultVal}" readonly="false" styleClass="form-control input-block-level">
-                                                                <p:ajax process="@this" listener="#{simulacionBean.calcRecommendation(params.param, params.defaultVal)}" update="simulForm:growl"/>  
+                                                                <p:ajax process="@this" listener="#{simulationBean.calcRecommendation(params.param, params.defaultVal)}" update="simulForm:growl"/>  
                                                             </p:inputText>
                                                         </div>
                                                         <div class="col-md-2">

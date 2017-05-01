@@ -1,4 +1,4 @@
-package net.hpclab.commons.tomatoservices.services;
+package net.hpclab.ucentral.fertitom.services;
 
 import java.io.File;
 import java.io.InputStream;
@@ -8,7 +8,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
-import net.hpclab.commons.tomatoservices.model.Configuration;
+import net.hpclab.ucentral.fertitom.model.Configuration;
 
 @WebListener
 public class ApplicationStartup implements ServletContextListener, Serializable {

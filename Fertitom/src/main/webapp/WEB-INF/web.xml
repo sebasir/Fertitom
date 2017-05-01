@@ -15,7 +15,7 @@
         <async-supported>true</async-supported>
     </servlet>
     <listener>
-        <listener-class>net.hpclab.commons.tomatoservices.services.ApplicationStartup</listener-class>
+        <listener-class>net.hpclab.ucentral.fertitom.services.ApplicationStartup</listener-class>
     </listener>
     <servlet-mapping>
         <servlet-name>Push Servlet</servlet-name>
