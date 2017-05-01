@@ -20,7 +20,6 @@
                     <hr />
                     <h4>Sistema de soporte a la decisión para el manejo del agua y la fertilización en el cultivo de tomate a campo abierto y bajo invernadero</h4>
                     <hr />
-
                 </div>
             </div>
         </nav>
@@ -52,19 +51,19 @@
                                     <div class="col-md-6" style="text-align: justify;font-size: small"> 
                                         <div class="row">
                                             <div class="col-md-12" style="text-align: justify;font-size: small"> <strong>FERTITOM</strong> es una herramienta de asistencia técnica que 
-                                            estima el rendimiento del cultivo de tomate, a campo abierto o bajo invernadero, en función de las condiciones de clima y el esquema 
-                                            de fertilización (NPK) definido por el usuario.</div>
+                                                estima el rendimiento del cultivo de tomate, a campo abierto o bajo invernadero, en función de las condiciones de clima y el esquema 
+                                                de fertilización (NPK) definido por el usuario.</div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12" style="text-align: justify;font-size: small"> El uso de <strong>FERTITOM</strong> es gratuito. Los resultados 
-                                            de las simulaciones son una guía indicativa del comportamiento genérico del cultivo de tomate y no considera las particularidades 
-                                            de cada ciclo de cultivo o el manejo aplicado por cada agricultor. </div>
+                                                de las simulaciones son una guía indicativa del comportamiento genérico del cultivo de tomate y no considera las particularidades 
+                                                de cada ciclo de cultivo o el manejo aplicado por cada agricultor. </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12" style="text-align: justify;font-size: small"> <strong>FERTITOM</strong> es el resultado de un proyecto de investigación 
-                                         cofinanciado por Colciencias y desarrollado en colaboración por la Universidad Jorge Tadeo Lozano y la Universidad 
-                                         Central, para las condiciones de producción colombianas, según las prácticas promedio de 
-                                        los agricultores tanto a campo abierto como bajo invernadero.</div> 
+                                                cofinanciado por Colciencias y desarrollado en colaboración por la Universidad Jorge Tadeo Lozano y la Universidad 
+                                                Central, para las condiciones de producción colombianas, según las prácticas promedio de 
+                                                los agricultores tanto a campo abierto como bajo invernadero.</div> 
                                         </div>
                                     </div>
                                     <div class="col-md-6" style="text-align: justify;font-size: small">
@@ -88,7 +87,7 @@
                                                     <h:selectOneMenu id="locWeather" styleClass="form-control input-block-level required" value="#{simulacionBean.simulation.location}" converter="#{locationConverter}">
                                                         <f:selectItem itemValue="#{null}" itemLabel="Selecciona..." />
                                                         <f:selectItems value="#{simulacionBean.locations}" var="loc" itemLabel="#{loc.municipality}"/>
-                                                        <p:ajax event="change" update="@this, location, fechaIni, fechaFin" oncomplete="setMapCenter('#{simulacionBean.simulation.location.latitude}','#{simulacionBean.simulation.location.longitude}','#{simulacionBean.simulation.location.municipality}',9)"/>
+                                                        <p:ajax event="change" update="@this, location, fechaIni, fechaFin" listener="#{simulacionBean.setMapCenter()}"/>
                                                     </h:selectOneMenu>
                                                 </div>
                                             </div>
@@ -206,7 +205,7 @@
                             <!-- Página 4 -->
                             <h3>Reporte de Resultados - Planta</h3>
                             <section>
-                                <div id="waitResultPlant">
+                                <div id="waitResultPlant" class="resultTitle">
                                     <h2>Ejecutando Script..</h2>
                                     <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
                                 </div>
@@ -255,7 +254,7 @@
                             <!-- Página 4 -->
                             <h3>Reporte de Resultados - Suelo</h3>
                             <section>
-                                <div id="waitResultSoil">
+                                <div id="waitResultSoil" class="resultTitle">
                                     <h2>Ejecutando Script..</h2>
                                     <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
                                 </div>
@@ -313,7 +312,7 @@
         </div>
         <nav class="navbar" role="navigation">
             <div class="container" style="text-align: center;">
-                <div class="col-md-2">
+                <div class="col-md-2 col-md-offset-4">
                     <h4><a href="http://www.utadeo.edu.co/" target="_blank"><img src="images/logo_utadeo.jpg" class="img-responsive"/></a></h4>
                 </div>
                 <div class="col-md-1">

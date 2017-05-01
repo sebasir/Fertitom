@@ -15,7 +15,7 @@ public class Simulation implements Serializable {
     private Double recPhosphorus;
     private Double recPotasium;
     private Double recWater;
-    private String result;
+    private boolean simulated;
 
     public String getId() {
         return id;
@@ -89,11 +89,11 @@ public class Simulation implements Serializable {
         this.recWater = recWater;
     }
 
-    public String getResult() {
-        return result;
+    public boolean isSimulated() {
+        return simulated;
     }
 
-    public void setResult(String result) {
-        this.result = result;
+    public void setSimulated(boolean simulated) {
+        this.simulated = simulated;
     }
 }

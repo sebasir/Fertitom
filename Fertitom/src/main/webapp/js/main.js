@@ -34,16 +34,14 @@ form.steps({
             // initialize();
             setMapCenter(4.583333, -74.066667, 'Colombia', 5);
             //alert("Pasamos por aquí");
-        }
-        else if (currentIndex === SIMUL_STEP) {
+        } else if (currentIndex === SIMUL_STEP) {
             $(".actions a:eq(1)").text("Simular");
-        }
-        else if (currentIndex === (SIMUL_STEP + 1)) {
+        } else if (currentIndex === (SIMUL_STEP + 1)) {
             $('#resultOutput').empty();
             launchSimulation();
         }/* else if (currentIndex === SIMUL_STEP) {
-            updateSummary();
-        }*/
+         updateSummary();
+         }*/
 
         if (priorIndex < currentIndex) {
             $('#progressbar').css('width', (priorIndex * 20 + 40) + '%');
@@ -56,24 +54,26 @@ form.steps({
         return form.valid();
     },
     onFinished: function (event, currentIndex) {
+        restart();
         form[0].submit();
     },
     onCanceled: function (event) {
         restart();
+        location.reload();
     }
 });
 
 function handleMessage(message) {
     console.log(message);
-    if(message.startsWith('simulationId')) {
-        var simulationId = message.substring(13);
+    if (message.status === 'ok') {
+        var simulationId = message.simulId;
         var src;
-        $('#resultPlant, #resultSoil').find('.res-img').each(function() {
+        $('#resultPlant, #resultSoil').find('.res-img').each(function () {
             src = $(this).prop("src");
             src = src.split('simulationId').join(simulationId);
             $(this).prop("src", src);
         });
-        $('#resultPlant, #resultSoil').find('.res-csv').each(function() {
+        $('#resultPlant, #resultSoil').find('.res-csv').each(function () {
             src = $(this).prop("href");
             src = src.split('simulationId').join(simulationId);
             $(this).prop("href", src);
@@ -82,6 +82,15 @@ function handleMessage(message) {
         $('#waitResultSoil').toggleClass('oculto');
         $('#resultPlant').toggleClass('oculto');
         $('#resultSoil').toggleClass('oculto');
+    } else if (message.status === 'error') {
+        $('.resultTitle').each(function () {
+            $(this).find('h4').each(function() {
+                $(this).html(message.message);
+            });
+        });
+    } else if (message.status === 'centerMap') {
+        var json = message.centerMap;
+        setMapCenter(json.latitude, json.longitude, json.name, json.zoom);
     }
 }
 
@@ -112,29 +121,27 @@ function initialize() {
     map = new google.maps.Map(mapCanvas, mapOptions);
 }
 
-function setMapCenter(paramLat, paramLon,paramName, zoomVal) {
-        console.log(paramLat, paramLon);
-    if (isNumeric(paramLat)&& isNumeric(paramLon))
-    {
-        var latitude=parseFloat(paramLat), longitude=parseFloat(paramLon);
-        var theZoom=parseInt(zoomVal);
+function setMapCenter(paramLat, paramLon, paramName, zoomVal) {
+    console.log(paramLat, paramLon);
+    if (isNumeric(paramLat) && isNumeric(paramLon)) {
+        var latitude = parseFloat(paramLat), longitude = parseFloat(paramLon);
+        var theZoom = parseInt(zoomVal);
         var mapCanvas = document.getElementById('map');
         var mapOptions = {
             center: {lat: latitude, lng: longitude},
             zoom: theZoom
         };
         var marker = new google.maps.Marker({
-            position: {lat: latitude, lng:longitude},
+            position: {lat: latitude, lng: longitude},
             title: paramName
         });
         map = new google.maps.Map(mapCanvas, mapOptions);
         marker.setMap(map);
-        map.setCenter(latitude, longitude);
+        //map.setCenter(latitude, longitude);
         //marker.setPosition(latitude, longitude);
     }
 }
 
-function isNumeric(n) 
-{
-  return !isNaN(parseFloat(n)) && isFinite(n);
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
 }
