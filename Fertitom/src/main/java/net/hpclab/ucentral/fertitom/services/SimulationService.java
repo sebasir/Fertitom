@@ -29,7 +29,10 @@ public class SimulationService extends Thread implements Serializable {
             //final String resultSimulation = Util.pathOutput + File.separator + simulation.getId();
             //Util.createSimulationFolder(resultSimulation); //Now R does this work
             String command = Util.Constant.R_COMMAND + Util.Constant.SPACE + Util.Constant.SCRIPT + Util.Constant.SPACE
-                    + simulation.getLocation().getPrefix() + Util.Constant.SPACE + simulation.getPlm2() + Util.Constant.SPACE + simulation.getId();
+                    + simulation.getLocation().getPrefix() + Util.Constant.SPACE + simulation.getPlm2() + Util.Constant.SPACE + simulation.getId() + Util.Constant.SPACE  
+                    + simulation.getRecNitrogen() + Util.Constant.SPACE
+                    + simulation.getRecPhosphorus() + Util.Constant.SPACE
+                     + simulation.getRecPotasium();
             System.out.println("CMD: " + command);
             eventBus.publish(Util.Constant.CHANNEL, "CMD: " + command);
             Runtime rt = Runtime.getRuntime();

@@ -101,6 +101,7 @@ public class SimulationBean implements Serializable {
                 break;
         }
         showMessage("Cambio de Valor", "El valor nuevo es " + value, FacesMessage.SEVERITY_INFO);
+        System.out.println(value);
     }
 
     public void restart() {
