@@ -1,0 +1,6 @@
+parametro,unidad,defecto,minimo,maximo
+N,kg/ha,300,50,700
+P2O5,kg/ha,200,50,800
+K2O,kg/ha,600,50,1000
+Densidad - campoabierto,plantas/m2,1,0.5,4
+Densidad - invernadero,plantas/m2,2.7,0.5,4

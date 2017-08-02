@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration>
+    <pathNixInput>/usr/local/fertitom</pathNixInput>
+    <pathWinInput>C:\Fertitom</pathWinInput>
+    <pathNixOutput>/usr/local/fertitom</pathNixOutput>
+    <pathWinOutput>C:\Fertitom</pathWinOutput>
+    <pathInput>input</pathInput>
+    <pathOutput>output</pathOutput>
+    <fileParam>params.csv</fileParam>
+    <scriptName>script.R</scriptName>
+    <location>
+        <id>1</id>
+        <prefix>BSS1</prefix>
+        <fileweather>BSS1_clima.csv</fileweather>
+        <filesoil>BSS1_clima.csv</filesoil>
+        <fileirrigation>BSS1_riego.csv</fileirrigation>
+        <fileubic>BSS1_ubic.csv</fileubic>
+    </location>
+    <location>
+        <id>2</id>
+        <prefix>BSS2</prefix>
+        <fileweather>BSS2_clima.csv</fileweather>
+        <filesoil>BSS2_clima.csv</filesoil>
+        <fileirrigation>BSS2_riego.csv</fileirrigation>
+        <fileubic>BSS2_ubic.csv</fileubic>
+    </location>
+    <location>
+        <id>3</id>
+        <prefix>SP1</prefix>
+        <fileweather>SP1_clima.csv</fileweather>
+        <filesoil>SP1_clima.csv</filesoil>
+        <fileirrigation>SP1_riego.csv</fileirrigation>
+        <fileubic>SP1_ubic.csv</fileubic>
+    </location>
+    <location>
+        <id>4</id>
+        <prefix>SSG1</prefix>
+        <fileweather>SSG1_clima.csv</fileweather>
+        <filesoil>SSG1_clima.csv</filesoil>
+        <fileirrigation>SSG1_riego.csv</fileirrigation>
+        <fileubic>SSG1_ubic.csv</fileubic>
+    </location>
+</configuration>
